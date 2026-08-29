@@ -28,6 +28,8 @@ import '../../View/Screen/Profile/view/profile_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_details_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_redeemed_screen.dart';
 import '../../View/Screen/Rewards/view/available_rewards_screen.dart';
+import '../../View/Screen/Settings/view/privacy_policy_screen.dart';
+import '../../View/Screen/Settings/view/terms_and_conditions_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
 import '../../View/Screen/Wallet/view/my_wallet_screen.dart';
@@ -65,6 +67,8 @@ class AppRoute {
   static const String myFavoriteScreen = '/my-favorite';
   static const String orderHistoryScreen = '/order-history';
   static const String orderDetailsScreen = '/order-details';
+  static const String termsAndConditionsScreen = '/terms-and-conditions';
+  static const String privacyPolicyScreen = '/privacy-policy';
 
   static List<GetPage> routes = [
     GetPage(
@@ -194,6 +198,14 @@ class AppRoute {
     GetPage(
       name: orderDetailsScreen,
       page: () => const OrderDetailsScreen(),
+    ),
+    GetPage(
+      name: termsAndConditionsScreen,
+      page: () => const TermsAndConditionsScreen(),
+    ),
+    GetPage(
+      name: privacyPolicyScreen,
+      page: () => const PrivacyPolicyScreen(),
     ),
   ];
 }

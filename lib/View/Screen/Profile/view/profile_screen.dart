@@ -254,28 +254,13 @@ class ProfileScreen extends StatelessWidget {
                         _buildMenuItem(
                           iconPath: AppIcons.termsIconSvg,
                           title: StaticString.termsAndConditions,
-                          onTap: () {
-                            Get.snackbar(
-                              StaticString.termsAndConditions,
-                              'Opening Terms & Conditions...',
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color(0xFF195ABE),
-                              colorText: Colors.white,
-                            );
-                          },
+                          onTap: () =>
+                              Get.toNamed(AppRoute.termsAndConditionsScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.privacyIconSvg,
                           title: StaticString.privacyPolicy,
-                          onTap: () {
-                            Get.snackbar(
-                              StaticString.privacyPolicy,
-                              'Opening Privacy Policy...',
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color(0xFF195ABE),
-                              colorText: Colors.white,
-                            );
-                          },
+                          onTap: () => Get.toNamed(AppRoute.privacyPolicyScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.logoutIconSvg,

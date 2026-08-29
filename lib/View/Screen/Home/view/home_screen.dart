@@ -10,6 +10,7 @@ import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/AppImg/app_img.dart';
 import '../../../../helper/network_img/custom_netwrok_image.dart';
 import '../../../Widgegt/navBar/nav_bar.dart';
+import '../../Order/view/order_screen.dart';
 import '../controller/home_controller.dart';
 import '../model/offer_model.dart';
 import '../model/product_model.dart';
@@ -25,43 +26,14 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF7F9FC),
       body: Column(
         children: [
-          // Expanded Scrollable Content
+          // Expanded Content depending on Bottom Nav Index
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Top Blue Header Section
-                  _buildTopHeader(controller),
-
-                  SizedBox(height: 24.h),
-
-                  // Main Body Content
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // "Sip more,Win more!" Loyalty Points Section
-                        _buildPointsSection(controller),
-
-                        SizedBox(height: 24.h),
-
-                        // "Offers" Banner Section
-                        _buildOffersSection(controller),
-
-                        SizedBox(height: 24.h),
-
-                        // "Order again" Products Section
-                        _buildOrderAgainSection(controller),
-
-                        SizedBox(height: 24.h),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            child: Obx(() {
+              if (controller.selectedNavIndex.value == 1) {
+                return const OrderScreen();
+              }
+              return _buildHomeContent(controller);
+            }),
           ),
 
           // Custom Bottom Navigation Bar
@@ -69,6 +41,45 @@ class HomeScreen extends StatelessWidget {
             () => CustomNavBar(
               currentIndex: controller.selectedNavIndex.value,
               onTap: controller.changeNavIndex,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ---------- HOME TAB CONTENT ----------
+  Widget _buildHomeContent(HomeController controller) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Top Blue Header Section
+          _buildTopHeader(controller),
+
+          SizedBox(height: 24.h),
+
+          // Main Body Content
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // "Sip more,Win more!" Loyalty Points Section
+                _buildPointsSection(controller),
+
+                SizedBox(height: 24.h),
+
+                // "Offers" Banner Section
+                _buildOffersSection(controller),
+
+                SizedBox(height: 24.h),
+
+                // "Order again" Products Section
+                _buildOrderAgainSection(controller),
+
+                SizedBox(height: 24.h),
+              ],
             ),
           ),
         ],

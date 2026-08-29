@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import '../../View/Screen/Auth/login_screen.dart';
 import '../../View/Screen/LoadingScreen/loading_screen.dart';
-import '../../View/Screen/SplashScreen/splash_screen.dart';
+import '../../View/Screen/Login/view/login_screen.dart';
+import '../../View/Screen/SplashScreen/start_now_screen.dart';
 
 class AppRoute {
   static const String loadingScreen = '/loading';
-  static const String splashScreen = '/splash';
+  static const String startNowScreen = '/start-now';
   static const String loginScreen = '/login';
   static const String homeScreen = '/home';
 
@@ -16,8 +16,8 @@ class AppRoute {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: splashScreen,
-      page: () => const SplashScreen(),
+      name: startNowScreen,
+      page: () => const StartNowScreen(),
       transition: Transition.rightToLeftWithFade,
     ),
     GetPage(

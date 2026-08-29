@@ -325,6 +325,16 @@ class StaticString {
   static const String privacyPolicyTitle = 'Privacy Policy';
   static const String lastUpdatedDate = 'Last updated: 12-12-2025';
 
+  // Delete Account Strings
+  static const String deleteAccountTitle = 'Delete Account';
+  static const String wantToDeleteAccountTitle = 'Want to delete account !';
+  static const String confirmOtpCodeToSmall = 'Please confirm otp code to remove your account.';
+  static const String enterPhoneNumberLabel = 'Enter Phone Number';
+  static const String enterYourPhoneNumberHint = 'Enter Your Phone Number';
+  static const String accountDeletionRequest = 'Account Deletion Request!';
+  static const String sentCodeToEmailSub = "We've Sent a Code to exa...@email.com";
+  static const String deleteBtn = 'Delete';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

@@ -112,6 +112,8 @@ class LoginScreen extends StatelessWidget {
                               border: InputBorder.none,
                               enabledBorder: InputBorder.none,
                               focusedBorder: InputBorder.none,
+                              filled: false,
+                              fillColor: Colors.transparent,
                               contentPadding: EdgeInsets.symmetric(vertical: 14.h),
                             ),
                           ),

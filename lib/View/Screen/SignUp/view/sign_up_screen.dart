@@ -330,6 +330,8 @@ class SignUpScreen extends StatelessWidget {
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
+          filled: false,
+          fillColor: Colors.transparent,
           contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
         ),
       ),

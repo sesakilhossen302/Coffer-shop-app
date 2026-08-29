@@ -38,7 +38,7 @@ class StartNowScreen extends StatelessWidget {
               Text(
                 StaticString.readyToBoost,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.sora(
+                style: GoogleFonts.jost(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
@@ -67,7 +67,7 @@ class StartNowScreen extends StatelessWidget {
                   ),
                   child: Text(
                     StaticString.startNow,
-                    style: GoogleFonts.sora(
+                    style: GoogleFonts.jost(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

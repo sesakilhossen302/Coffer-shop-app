@@ -127,7 +127,7 @@ class _CoffecitoMascotPainter extends CustomPainter {
       // "COFFECITO" Text on the Mug Body
       final textSpan = TextSpan(
         text: 'COFFECITO',
-        style: GoogleFonts.sora(
+        style: GoogleFonts.jost(
           color: secondaryColor,
           fontSize: 15,
           fontWeight: FontWeight.w900,

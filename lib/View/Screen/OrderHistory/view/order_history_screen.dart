@@ -321,7 +321,14 @@ class OrderHistoryScreen extends StatelessWidget {
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: () => Get.toNamed(AppRoute.orderReceivedScreen),
+                  onTap: () => Get.toNamed(
+                    AppRoute.orderDetailsScreen,
+                    arguments: {
+                      'status': item.status,
+                      'orderId': item.orderId,
+                      'price': item.price,
+                    },
+                  ),
                   borderRadius: BorderRadius.circular(8.r),
                   child: Container(
                     width: 90.w,

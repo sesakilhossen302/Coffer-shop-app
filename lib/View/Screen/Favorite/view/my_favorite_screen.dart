@@ -7,6 +7,8 @@ import '../../../../Core/AppRoute/app_route.dart';
 import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/AppImg/app_img.dart';
 import '../../../../Utils/StaticString/static_string.dart';
+import '../../Branches/model/branch_model.dart';
+import '../../Home/model/product_model.dart';
 import '../controller/favorite_controller.dart';
 
 class MyFavoriteScreen extends StatelessWidget {
@@ -21,7 +23,7 @@ class MyFavoriteScreen extends StatelessWidget {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF9FAFC),
       body: Column(
         children: [
           // Top Blue Header Section
@@ -122,7 +124,9 @@ class MyFavoriteScreen extends StatelessWidget {
             ),
           ),
 
-          // Main Body Content (Empty State or List)
+          SizedBox(height: 16.h),
+
+          // Main Body Content (Empty State or Populated List)
           Expanded(
             child: Obx(() {
               if (controller.selectedTab.value == 0) {
@@ -136,7 +140,17 @@ class MyFavoriteScreen extends StatelessWidget {
                         Get.toNamed(AppRoute.branchSearchLocationScreen),
                   );
                 }
-                return const SizedBox();
+                return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  itemCount: controller.favoriteShops.length,
+                  itemBuilder: (context, index) {
+                    return _buildShopFavoriteCard(
+                      controller.favoriteShops[index],
+                      controller,
+                    );
+                  },
+                );
               } else {
                 // Item Tab
                 if (controller.favoriteItems.isEmpty) {
@@ -147,7 +161,17 @@ class MyFavoriteScreen extends StatelessWidget {
                     onTapBtn: () => Get.offAllNamed(AppRoute.homeScreen),
                   );
                 }
-                return const SizedBox();
+                return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  itemCount: controller.favoriteItems.length,
+                  itemBuilder: (context, index) {
+                    return _buildItemFavoriteCard(
+                      controller.favoriteItems[index],
+                      controller,
+                    );
+                  },
+                );
               }
             }),
           ),
@@ -194,6 +218,344 @@ class MyFavoriteScreen extends StatelessWidget {
     );
   }
 
+  // ---------- SHOP FAVORITE CARD WIDGET ----------
+  Widget _buildShopFavoriteCard(
+      BranchModel shop, FavoriteController controller) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: () => Get.toNamed(AppRoute.shopDetailsScreen, arguments: shop),
+        borderRadius: BorderRadius.circular(18.r),
+        child: Padding(
+          padding: EdgeInsets.all(14.r),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Logo Avatar
+                  Container(
+                    width: 48.r,
+                    height: 48.r,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF00704A),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: ClipOval(
+                        child: Image.network(
+                          shop.logoUrl,
+                          width: 48.r,
+                          height: 48.r,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(
+                            Icons.store_rounded,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(width: 12.w),
+
+                  // Name, Address, Status Badge
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          shop.name,
+                          style: GoogleFonts.jost(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF222222),
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          shop.address,
+                          style: GoogleFonts.jost(
+                            fontSize: 12.sp,
+                            color: const Color(0xFF888888),
+                          ),
+                        ),
+                        SizedBox(height: 6.h),
+
+                        // Open / Closed Status Badge
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 3.h),
+                          decoration: BoxDecoration(
+                            color: shop.isOpen
+                                ? const Color(0xFFE8F7ED)
+                                : const Color(0xFFFDE8E8),
+                            borderRadius: BorderRadius.circular(6.r),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                shop.isOpen
+                                    ? StaticString.openText
+                                    : StaticString.closedText,
+                                style: GoogleFonts.jost(
+                                  fontSize: 11.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: shop.isOpen
+                                      ? const Color(0xFF34C759)
+                                      : const Color(0xFFE53935),
+                                ),
+                              ),
+                              SizedBox(width: 4.w),
+                              Container(
+                                width: 5.r,
+                                height: 5.r,
+                                decoration: BoxDecoration(
+                                  color: shop.isOpen
+                                      ? const Color(0xFF34C759)
+                                      : const Color(0xFFE53935),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Red Heart Icon
+                  GestureDetector(
+                    onTap: () => controller.toggleFavoriteShop(shop),
+                    child: Padding(
+                      padding: EdgeInsets.all(4.r),
+                      child: SvgPicture.asset(
+                        AppIcons.favoriteIconSvg,
+                        width: 22.w,
+                        height: 22.h,
+                        colorFilter: const ColorFilter.mode(
+                          Color(0xFFE53935),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 14.h),
+
+              // Order Now Button
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () =>
+                      Get.toNamed(AppRoute.shopDetailsScreen, arguments: shop),
+                  borderRadius: BorderRadius.circular(12.r),
+                  child: Container(
+                    width: double.infinity,
+                    height: 42.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF195ABE),
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          AppIcons.shopIcon,
+                          width: 18.w,
+                          height: 18.h,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        Text(
+                          StaticString.orderNowBtn,
+                          style: GoogleFonts.jost(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ---------- ITEM FAVORITE CARD WIDGET ----------
+  Widget _buildItemFavoriteCard(
+      ProductModel item, FavoriteController controller) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(12.r),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Product Thumbnail Image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.r),
+            child: Image.network(
+              item.imageUrl,
+              width: 76.r,
+              height: 76.r,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Container(
+                width: 76.r,
+                height: 76.r,
+                color: const Color(0xFFF5F6F8),
+                child: const Icon(
+                  Icons.fastfood_rounded,
+                  color: Color(0xFF195ABE),
+                ),
+              ),
+            ),
+          ),
+
+          SizedBox(width: 12.w),
+
+          // Title, Description, Price Column
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.title,
+                  style: GoogleFonts.jost(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF222222),
+                  ),
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  item.description,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.jost(
+                    fontSize: 11.5.sp,
+                    color: const Color(0xFF888888),
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  '\$${item.price.toStringAsFixed(0)}',
+                  style: GoogleFonts.jost(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF222222),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(width: 8.w),
+
+          // Right Heart & Order Now Button Column
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Red Heart Icon
+              GestureDetector(
+                onTap: () => controller.removeFavoriteItem(item),
+                child: Padding(
+                  padding: EdgeInsets.all(2.r),
+                  child: SvgPicture.asset(
+                    AppIcons.favoriteIconSvg,
+                    width: 20.w,
+                    height: 20.h,
+                    colorFilter: const ColorFilter.mode(
+                      Color(0xFFE53935),
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 16.h),
+
+              // Order Now Button
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => Get.toNamed(AppRoute.itemDetailsScreen),
+                  borderRadius: BorderRadius.circular(10.r),
+                  child: Container(
+                    width: 104.w,
+                    height: 36.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF195ABE),
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          AppIcons.shopIcon,
+                          width: 14.w,
+                          height: 14.h,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        SizedBox(width: 6.w),
+                        Text(
+                          StaticString.orderNowBtn,
+                          style: GoogleFonts.jost(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   // ---------- EMPTY STATE WIDGET ----------
   Widget _buildEmptyState({
     required String title,
@@ -209,7 +571,6 @@ class MyFavoriteScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // User-Provided Image Asset: No favorite shop yet img .png
               Image.asset(
                 AppImg.noFavoriteShopImg,
                 height: 160.h,
@@ -220,10 +581,7 @@ class MyFavoriteScreen extends StatelessWidget {
                   color: const Color(0xFFBCE3F7),
                 ),
               ),
-
               SizedBox(height: 24.h),
-
-              // Title
               Text(
                 title,
                 textAlign: TextAlign.center,
@@ -233,10 +591,7 @@ class MyFavoriteScreen extends StatelessWidget {
                   color: const Color(0xFF222222),
                 ),
               ),
-
               SizedBox(height: 6.h),
-
-              // Subtitle
               Text(
                 subtitle,
                 textAlign: TextAlign.center,
@@ -245,10 +600,7 @@ class MyFavoriteScreen extends StatelessWidget {
                   color: const Color(0xFF777777),
                 ),
               ),
-
               SizedBox(height: 24.h),
-
-              // Outlined Action Button
               Material(
                 color: Colors.transparent,
                 child: InkWell(

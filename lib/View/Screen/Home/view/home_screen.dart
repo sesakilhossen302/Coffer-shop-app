@@ -81,19 +81,8 @@ class HomeScreen extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E90FF),
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(28.r),
-          bottomRight: Radius.circular(28.r),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF1E90FF).withValues(alpha: 0.25),
-            blurRadius: 15,
-            offset: const Offset(0, 4),
-          ),
-        ],
+      decoration: const BoxDecoration(
+        color: Color(0xFF1E90FF),
       ),
       padding: EdgeInsets.only(
         left: 20.w,
@@ -137,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      padding: EdgeInsets.all(6.r),
+                      padding: EdgeInsets.all(4.r),
                       child: SvgPicture.asset(
                         AppIcons.shopIcon,
                         width: 26.w,
@@ -146,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 12.w),
+                  SizedBox(width: 10.w),
 
                   // Notification Icon Button with Red Badge
                   Stack(
@@ -155,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {},
                         child: Container(
-                          padding: EdgeInsets.all(6.r),
+                          padding: EdgeInsets.all(4.r),
                           child: SvgPicture.asset(
                             AppIcons.notificationIcon,
                             width: 26.w,
@@ -165,8 +154,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        right: 2.w,
-                        top: 2.h,
+                        right: 0,
+                        top: 0,
                         child: Container(
                           width: 16.w,
                           height: 16.h,
@@ -193,21 +182,14 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 22.h),
+          SizedBox(height: 20.h),
 
           // Search Bar Input Container
           Container(
-            height: 50.h,
+            height: 52.h,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color(0xFFF2F4F7),
               borderRadius: BorderRadius.circular(16.r),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.04),
-                  blurRadius: 10,
-                  offset: const Offset(0, 2),
-                ),
-              ],
             ),
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
@@ -271,7 +253,7 @@ class HomeScreen extends StatelessWidget {
           style: GoogleFonts.jost(
             fontSize: 22.sp,
             fontWeight: FontWeight.bold,
-            color: const Color(0xFF1E90FF),
+            color: const Color(0xFF195ABE),
           ),
         ),
         SizedBox(height: 2.h),
@@ -285,46 +267,43 @@ class HomeScreen extends StatelessWidget {
         SizedBox(height: 14.h),
         Container(
           width: double.infinity,
-          height: 72.h,
+          height: 76.h,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color(0xFFF4F5F7),
             borderRadius: BorderRadius.circular(20.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.03),
-                blurRadius: 10,
-                offset: const Offset(0, 2),
-              ),
-            ],
           ),
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 18.w),
           child: Row(
             children: [
               // Gold Coin Image with Yellow Progress Arc Ring
               SizedBox(
-                width: 48.w,
-                height: 48.h,
+                width: 54.w,
+                height: 54.h,
                 child: CustomPaint(
                   painter: _CoinProgressArcPainter(),
                   child: Center(
-                    child: Image.asset(
-                      AppImg.coinImg,
-                      width: 36.w,
-                      height: 36.h,
-                      errorBuilder: (context, error, stackTrace) => Container(
-                        width: 36.w,
-                        height: 36.h,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFFFC107),
-                          shape: BoxShape.circle,
+                    child: Padding(
+                      padding: EdgeInsets.all(6.r),
+                      child: Image.asset(
+                        AppImg.coinImg,
+                        width: 38.w,
+                        height: 38.h,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          width: 38.w,
+                          height: 38.h,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFFFC107),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.monetization_on, color: Colors.white),
                         ),
-                        child: const Icon(Icons.monetization_on, color: Colors.white),
                       ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 14.w),
+              SizedBox(width: 16.w),
               Obx(
                 () => RichText(
                   text: TextSpan(
@@ -332,17 +311,17 @@ class HomeScreen extends StatelessWidget {
                       TextSpan(
                         text: '${controller.userPoints.value} ',
                         style: GoogleFonts.jost(
-                          fontSize: 28.sp,
+                          fontSize: 32.sp,
                           fontWeight: FontWeight.w900,
-                          color: const Color(0xFF1E90FF),
+                          color: const Color(0xFF195ABE),
                         ),
                       ),
                       TextSpan(
                         text: 'points',
                         style: GoogleFonts.jost(
-                          fontSize: 15.sp,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF1E90FF),
+                          color: const Color(0xFF195ABE),
                         ),
                       ),
                     ],
@@ -352,8 +331,8 @@ class HomeScreen extends StatelessWidget {
               const Spacer(),
               const Icon(
                 Icons.arrow_forward_ios_rounded,
-                size: 18,
-                color: Color(0xFF1E90FF),
+                size: 20,
+                color: Color(0xFF195ABE),
               ),
             ],
           ),
@@ -577,28 +556,28 @@ class HomeScreen extends StatelessWidget {
 class _CoinProgressArcPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final strokeWidth = 3.5.w;
+    final strokeWidth = 4.5.w;
     final center = Offset(size.width / 2, size.height / 2);
     final radius = (min(size.width, size.height) - strokeWidth) / 2;
 
-    // Background track ring
+    // Background track ring (#E2E8F0)
     final bgPaint = Paint()
       ..color = const Color(0xFFE2E8F0)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
     canvas.drawCircle(center, radius, bgPaint);
 
-    // Golden yellow progress arc ring
+    // Golden yellow progress arc ring (#FFB800)
     final arcPaint = Paint()
-      ..color = const Color(0xFFFFC107)
+      ..color = const Color(0xFFFFB800)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      -pi / 2,
-      2.1 * pi,
+      -pi / 4,
+      1.1 * pi,
       false,
       arcPaint,
     );

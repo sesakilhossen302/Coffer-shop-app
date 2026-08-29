@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../Utils/AppColors/app_colors.dart';
+import '../../../Utils/AppIcons/app_icons.dart';
 
 class SocialLoginButtons extends StatelessWidget {
   final VoidCallback? onFacebookTap;
@@ -20,32 +22,17 @@ class SocialLoginButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildSocialCircleButton(
-          icon: const Icon(
-            Icons.facebook,
-            color: Color(0xFF1877F2),
-            size: 24,
-          ),
+          iconPath: AppIcons.facebookIcon,
           onTap: onFacebookTap,
         ),
         SizedBox(width: 20.w),
         _buildSocialCircleButton(
-          child: Text(
-            'G',
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFFEA4335),
-            ),
-          ),
+          iconPath: AppIcons.googleIcon,
           onTap: onGoogleTap,
         ),
         SizedBox(width: 20.w),
         _buildSocialCircleButton(
-          icon: const Icon(
-            Icons.apple,
-            color: Colors.black,
-            size: 24,
-          ),
+          iconPath: AppIcons.appleIcon,
           onTap: onAppleTap,
         ),
       ],
@@ -53,8 +40,7 @@ class SocialLoginButtons extends StatelessWidget {
   }
 
   Widget _buildSocialCircleButton({
-    Widget? icon,
-    Widget? child,
+    required String iconPath,
     VoidCallback? onTap,
   }) {
     return InkWell(
@@ -71,7 +57,11 @@ class SocialLoginButtons extends StatelessWidget {
             width: 1.2,
           ),
         ),
-        child: Center(child: icon ?? child),
+        padding: EdgeInsets.all(12.r),
+        child: SvgPicture.asset(
+          iconPath,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

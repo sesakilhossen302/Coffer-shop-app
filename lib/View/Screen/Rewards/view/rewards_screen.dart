@@ -444,12 +444,15 @@ class RewardsScreen extends StatelessWidget {
                           color: const Color(0xFF888888),
                         ),
                       ),
-                      Text(
-                        StaticString.viewAll,
-                        style: GoogleFonts.jost(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF1E90FF),
+                      GestureDetector(
+                        onTap: () => Get.toNamed(AppRoute.giftCardsCatalogScreen),
+                        child: Text(
+                          StaticString.viewAll,
+                          style: GoogleFonts.jost(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF1E90FF),
+                          ),
                         ),
                       ),
                     ],

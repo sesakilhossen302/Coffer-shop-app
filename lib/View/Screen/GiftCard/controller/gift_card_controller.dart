@@ -86,14 +86,6 @@ class GiftCardController extends GetxController {
   }
 
   void confirmAndAdd() {
-    Get.snackbar(
-      'Wallet Updated!',
-      '400 MXN has been successfully added to your wallet balance.',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: const Color(0xFF195ABE),
-      colorText: Colors.white,
-      margin: const EdgeInsets.all(16),
-    );
-    Get.offAllNamed(AppRoute.homeScreen);
+    Get.toNamed(AppRoute.addedToWalletSuccessScreen);
   }
 }

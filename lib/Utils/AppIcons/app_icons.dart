@@ -66,4 +66,6 @@ class AppIcons {
   static const String privacyIconSvg = '$basePath/Privacy Policy-Icons.svg';
   static const String logoutIconSvg = '$basePath/logout.svg';
   static const String deleteAccountIconSvg = '$basePath/Delete Account-Icons.svg';
+  static const String wantToDeleteAccountSvg = '$basePath/Want to delete account !-img.svg';
+  static const String otpIconSvg = '$basePath/Otp-Icons.svg';
 }

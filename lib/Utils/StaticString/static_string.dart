@@ -121,7 +121,7 @@ class StaticString {
   static const String addExistingGiftCard = 'Add Existing Gift Card';
   static const String giveCoffeeAndRewards = 'Give coffee and rewards on a single card.';
 
-  // Reward Details Screen Strings
+  // Reward Details & Redeemed Screen Strings
   static const String rewardDetails = 'Reward details';
   static const String aboutThisReward = 'About this reward';
   static const String aboutRewardDesc =
@@ -134,6 +134,12 @@ class StaticString {
   static const String availableAt = 'Available at';
   static const String availableAtDesc = 'All Coffecito stores';
   static const String goBack = 'Go Back';
+  static const String rewardRedeemed = 'Reward Redeemed';
+  static const String rewardRedeemedExclamation = 'Reward Redeemed!';
+  static const String showCashierMsg = 'Show this screen to the cashier to redeem\nyour reward.';
+  static const String validUntil = 'Valid until';
+  static const String validUntilDate = '24 May 2026, 11:59 PM';
+  static const String done = 'Done';
 
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';

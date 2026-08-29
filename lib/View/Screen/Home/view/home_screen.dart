@@ -11,6 +11,7 @@ import '../../../../Utils/AppImg/app_img.dart';
 import '../../../../helper/network_img/custom_netwrok_image.dart';
 import '../../../Widgegt/navBar/nav_bar.dart';
 import '../../Order/view/order_screen.dart';
+import '../../Rewards/view/rewards_screen.dart';
 import '../controller/home_controller.dart';
 import '../model/offer_model.dart';
 import '../model/product_model.dart';
@@ -31,6 +32,9 @@ class HomeScreen extends StatelessWidget {
             child: Obx(() {
               if (controller.selectedNavIndex.value == 1) {
                 return const OrderScreen();
+              }
+              if (controller.selectedNavIndex.value == 2) {
+                return const RewardsScreen();
               }
               return _buildHomeContent(controller);
             }),

@@ -217,6 +217,18 @@ class StaticString {
   static const String redeemedBadge = 'Redeemed';
   static const String cafeGratis = 'Café gratis';
 
+  // Branches Screen Strings
+  static const String branchesTitle = 'Branches';
+  static const String findNearestCoffecito = 'Find your nearest Coffecito!';
+  static const String searchLocationPlaceholder = 'Search location';
+  static const String howToGetThere = 'How to get there';
+  static const String faqsTitle = 'FAQs';
+  static const String canIPayInCash = 'Can I pay in cash?: Yes';
+  static const String doRewardsExpire = 'Do the rewards expire?: No';
+  static const String coffecitoMontejo = 'Coffecito Montejo';
+  static const String montejoAddress = 'Montejo Promenade #220';
+  static const String montejoPhone = '+1664456285966';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

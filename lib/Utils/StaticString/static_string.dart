@@ -169,6 +169,28 @@ class StaticString {
   static const String purchaseSuccessMsg =
       'Thank you! Your wallet has been updated and is ready to use for your next order.';
 
+  // Add Existing Gift Card Strings
+  static const String addGiftCardTitle = 'Add Gift Card';
+  static const String giftCardNumberLabel = 'Gift Card Number';
+  static const String enterGiftCardNumber = 'Enter gift card number';
+  static const String giftCardAddedTitle = 'Gift card added';
+  static const String giftCardAddedSuccessfully = 'Gift Card Added Successfully!';
+  static const String giftCardAddedSubMsg =
+      'Your gift card amount has been added to\nyour wallet';
+  static const String balance = 'Balance';
+  static const String addedOn = 'Added on';
+  static const String addedOnDate = '20 May 2026, 10:30 AM';
+  static const String reviewAndConfirm = 'Review & Confirm';
+  static const String caffecitoGiftCard = 'Caffecito Gift Card';
+  static const String amountToAdd = 'Amount to add';
+  static const String currentWalletBalance = 'Current wallet balance';
+  static const String currentBalanceValue = '850 MXN';
+  static const String newWalletBalance = 'New wallet balance';
+  static const String newBalanceValue = '1250 MXN';
+  static const String onceAddedNotice =
+      'Once added, the amount will be available in your wallet balance.';
+  static const String confirmAndAdd = 'Confirm & Add';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

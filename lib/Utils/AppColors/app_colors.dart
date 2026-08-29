@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  // Brand Colors from Design
+  static const Color splashBackground = Color(0xFF1E90FF); // Deep Sky Blue #1E90FF
+  static const Color startNowButton = Color(0xFF195ABE);   // Royal Blue #195ABE
+
   // Primary Coffee Palette
-  static const Color primary = Color(0xFFC67C4E); // Espresso Amber Gold
-  static const Color primaryDark = Color(0xFF8B4513); // Saddle Brown
-  static const Color primaryLight = Color(0xFFEDC9AF); // Latte Cream
-  static const Color secondary = Color(0xFF313131); // Dark Charcoal
+  static const Color primary = Color(0xFF1E90FF);
+  static const Color primaryDark = Color(0xFF195ABE);
+  static const Color primaryLight = Color(0xFF64B5F6);
+  static const Color secondary = Color(0xFF195ABE);
 
   // Background Colors
-  static const Color background = Color(0xFFF9F9F9); // Light Grayish White
+  static const Color background = Color(0xFFF9F9F9);
   static const Color cardBackground = Color(0xFFFFFFFF);
   static const Color darkBackground = Color(0xFF131313);
 

@@ -1,5 +1,6 @@
 class AppIcons {
   static const String basePath = 'assets/icons';
+  static const String baseImagePath = 'assets/images';
 
   // SVG Icons from Design
   static const String splashIcon = '$basePath/Splash-Icons.svg';
@@ -31,10 +32,11 @@ class AppIcons {
   static const String applePayIcon = '$basePath/ApplePay.svg';
   static const String googlePayIcon = '$basePath/GooglePay.svg';
 
-  // Rewards Module SVG Assets
+  // Rewards Module SVG & PNG Assets
   static const String coffecitoLogoSvg = '$basePath/COFFECITO.svg';
   static const String giftCard800MXNSvg = '$basePath/800MXN-Icons.svg';
   static const String rewardIcon14Svg = '$basePath/ICON (14).svg';
+  static const String homePageCoinImg = '$baseImagePath/Home-Page-Coin-img.png';
 
   // Additional App Icons
   static const String coffee = '$basePath/coffee.png';

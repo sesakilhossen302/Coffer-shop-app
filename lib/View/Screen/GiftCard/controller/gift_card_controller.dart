@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../Core/AppRoute/app_route.dart';
 import '../../Rewards/model/gift_card_model.dart';
 import '../view/widgets/purchase_success_dialog.dart';
 
@@ -11,11 +12,12 @@ class GiftCardController extends GetxController {
   TextEditingController? _messageController;
   TextEditingController? _receiverNameController;
   TextEditingController? _receiverEmailController;
+  TextEditingController? _cardNumberInputController;
 
   TextEditingController get messageController {
     try {
       _messageController ??= TextEditingController();
-      _messageController!.text; // Touch to verify validity
+      _messageController!.text;
     } catch (_) {
       _messageController = TextEditingController();
     }
@@ -40,6 +42,16 @@ class GiftCardController extends GetxController {
       _receiverEmailController = TextEditingController();
     }
     return _receiverEmailController!;
+  }
+
+  TextEditingController get cardNumberInputController {
+    try {
+      _cardNumberInputController ??= TextEditingController();
+      _cardNumberInputController!.text;
+    } catch (_) {
+      _cardNumberInputController = TextEditingController();
+    }
+    return _cardNumberInputController!;
   }
 
   @override
@@ -73,9 +85,15 @@ class GiftCardController extends GetxController {
     );
   }
 
-  @override
-  void onClose() {
-    // Keep controllers safely retained
-    super.onClose();
+  void confirmAndAdd() {
+    Get.snackbar(
+      'Wallet Updated!',
+      '400 MXN has been successfully added to your wallet balance.',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: const Color(0xFF195ABE),
+      colorText: Colors.white,
+      margin: const EdgeInsets.all(16),
+    );
+    Get.offAllNamed(AppRoute.homeScreen);
   }
 }

@@ -33,6 +33,7 @@ import '../../View/Screen/Settings/view/privacy_policy_screen.dart';
 import '../../View/Screen/Settings/view/terms_and_conditions_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
+import '../../View/Screen/Support/view/support_screen.dart';
 import '../../View/Screen/Wallet/view/my_wallet_screen.dart';
 
 class AppRoute {
@@ -71,6 +72,7 @@ class AppRoute {
   static const String termsAndConditionsScreen = '/terms-and-conditions';
   static const String privacyPolicyScreen = '/privacy-policy';
   static const String deleteAccountScreen = '/delete-account';
+  static const String supportScreen = '/support';
 
   static List<GetPage> routes = [
     GetPage(
@@ -212,6 +214,10 @@ class AppRoute {
     GetPage(
       name: deleteAccountScreen,
       page: () => const DeleteAccountScreen(),
+    ),
+    GetPage(
+      name: supportScreen,
+      page: () => const SupportScreen(),
     ),
   ];
 }

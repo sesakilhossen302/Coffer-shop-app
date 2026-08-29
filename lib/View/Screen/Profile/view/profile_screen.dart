@@ -240,15 +240,7 @@ class ProfileScreen extends StatelessWidget {
                         _buildMenuItem(
                           iconPath: AppIcons.supportIconSvg,
                           title: StaticString.support,
-                          onTap: () {
-                            Get.snackbar(
-                              StaticString.support,
-                              'Opening Support desk...',
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color(0xFF195ABE),
-                              colorText: Colors.white,
-                            );
-                          },
+                          onTap: () => Get.toNamed(AppRoute.supportScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.termsIconSvg,

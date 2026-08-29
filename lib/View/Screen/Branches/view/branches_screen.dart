@@ -143,35 +143,62 @@ class BranchesScreen extends StatelessWidget {
                 SizedBox(height: 16.h),
 
                 // Search Location Field
-                GestureDetector(
-                  onTap: () => Get.toNamed(AppRoute.branchSearchLocationScreen),
-                  child: Container(
-                    height: 46.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF5F6F8),
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 14.w),
-                    child: Row(
-                      children: [
-                        Icon(
+                Container(
+                  height: 46.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF5F6F8),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 14.w),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          final query = controller.searchController.text.trim();
+                          Get.toNamed(
+                            AppRoute.branchSearchLocationScreen,
+                            arguments: query.isNotEmpty ? query : null,
+                          );
+                        },
+                        child: Icon(
                           Icons.search_rounded,
                           color: const Color(0xFF999999),
                           size: 20.r,
                         ),
-                        SizedBox(width: 10.w),
-                        Expanded(
-                          child: Text(
-                            StaticString.searchLocationPlaceholder,
-                            style: GoogleFonts.jost(
+                      ),
+                      SizedBox(width: 10.w),
+                      Expanded(
+                        child: TextField(
+                          controller: controller.searchController,
+                          textInputAction: TextInputAction.search,
+                          onSubmitted: (query) {
+                            final searchText = query.trim();
+                            if (searchText.isNotEmpty) {
+                              controller.searchQuery.value = searchText;
+                            }
+                            Get.toNamed(
+                              AppRoute.branchSearchLocationScreen,
+                              arguments: searchText.isNotEmpty ? searchText : null,
+                            );
+                          },
+                          style: GoogleFonts.jost(
+                            fontSize: 13.5.sp,
+                            color: const Color(0xFF222222),
+                          ),
+                          decoration: InputDecoration(
+                            hintText: StaticString.searchLocationPlaceholder,
+                            hintStyle: GoogleFonts.jost(
                               fontSize: 13.sp,
                               color: const Color(0xFF999999),
                             ),
+                            border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: EdgeInsets.zero,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],

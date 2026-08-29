@@ -13,15 +13,7 @@ class LoginController extends GetxController {
   }
 
   void submitLogin() {
-    Get.toNamed(
-      AppRoute.otpScreen,
-      arguments: {
-        'isEmail': isEmailMode.value,
-        'target': inputController.text.isNotEmpty
-            ? inputController.text
-            : (isEmailMode.value ? 'helloworld@gmail.com' : '+52 9999 10 20 30'),
-      },
-    );
+    Get.offAllNamed(AppRoute.homeScreen);
   }
 
   @override

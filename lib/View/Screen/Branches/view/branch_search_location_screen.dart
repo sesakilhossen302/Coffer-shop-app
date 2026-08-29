@@ -223,166 +223,173 @@ class BranchSearchLocationScreen extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.all(14.r),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      child: InkWell(
+        onTap: () => Get.toNamed(AppRoute.shopDetailsScreen, arguments: shop),
+        borderRadius: BorderRadius.circular(18.r),
+        child: Padding(
+          padding: EdgeInsets.all(14.r),
+          child: Column(
             children: [
-              // Circular Shop Logo Avatar
-              Container(
-                width: 48.r,
-                height: 48.r,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF00704A), // Starbucks / Coffecito Green
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: ClipOval(
-                    child: Image.network(
-                      shop.logoUrl,
-                      width: 48.r,
-                      height: 48.r,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => const Icon(
-                        Icons.store_rounded,
-                        color: Colors.white,
-                        size: 26,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Circular Shop Logo Avatar
+                  Container(
+                    width: 48.r,
+                    height: 48.r,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF00704A), // Starbucks / Coffecito Green
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: ClipOval(
+                        child: Image.network(
+                          shop.logoUrl,
+                          width: 48.r,
+                          height: 48.r,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(
+                            Icons.store_rounded,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+
+                  SizedBox(width: 12.w),
+
+                  // Shop Details (Name, Address, Open/Closed Badge)
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          shop.name,
+                          style: GoogleFonts.jost(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF222222),
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          shop.address,
+                          style: GoogleFonts.jost(
+                            fontSize: 12.sp,
+                            color: const Color(0xFF888888),
+                          ),
+                        ),
+                        SizedBox(height: 6.h),
+
+                        // Open / Closed Status Badge
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 3.h),
+                          decoration: BoxDecoration(
+                            color: shop.isOpen
+                                ? const Color(0xFFE8F7ED)
+                                : const Color(0xFFFDE8E8),
+                            borderRadius: BorderRadius.circular(6.r),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                shop.isOpen
+                                    ? StaticString.openText
+                                    : StaticString.closedText,
+                                style: GoogleFonts.jost(
+                                  fontSize: 11.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: shop.isOpen
+                                      ? const Color(0xFF34C759)
+                                      : const Color(0xFFE53935),
+                                ),
+                              ),
+                              SizedBox(width: 4.w),
+                              Container(
+                                width: 5.r,
+                                height: 5.r,
+                                decoration: BoxDecoration(
+                                  color: shop.isOpen
+                                      ? const Color(0xFF34C759)
+                                      : const Color(0xFFE53935),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // User-Provided Favorite Heart SVG Icon (assets/icons/Favorite.svg)
+                  GestureDetector(
+                    onTap: () => controller.toggleFavorite(shop),
+                    child: Padding(
+                      padding: EdgeInsets.all(4.r),
+                      child: SvgPicture.asset(
+                        AppIcons.favoriteIconSvg,
+                        width: 22.w,
+                        height: 22.h,
+                        colorFilter: shop.isFavorite
+                            ? const ColorFilter.mode(
+                                Color(0xFFE53935), BlendMode.srcIn)
+                            : null,
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
-              SizedBox(width: 12.w),
+              SizedBox(height: 14.h),
 
-              // Shop Details (Name, Address, Open/Closed Badge)
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      shop.name,
-                      style: GoogleFonts.jost(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF222222),
-                      ),
+              // Primary "Order Now" Button with Cart Icon
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => Get.offAllNamed(AppRoute.homeScreen),
+                  borderRadius: BorderRadius.circular(12.r),
+                  child: Container(
+                    width: double.infinity,
+                    height: 42.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF195ABE),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
-                    SizedBox(height: 2.h),
-                    Text(
-                      shop.address,
-                      style: GoogleFonts.jost(
-                        fontSize: 12.sp,
-                        color: const Color(0xFF888888),
-                      ),
-                    ),
-                    SizedBox(height: 6.h),
-
-                    // Open / Closed Status Badge
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 8.w, vertical: 3.h),
-                      decoration: BoxDecoration(
-                        color: shop.isOpen
-                            ? const Color(0xFFE8F7ED)
-                            : const Color(0xFFFDE8E8),
-                        borderRadius: BorderRadius.circular(6.r),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            shop.isOpen
-                                ? StaticString.openText
-                                : StaticString.closedText,
-                            style: GoogleFonts.jost(
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.bold,
-                              color: shop.isOpen
-                                  ? const Color(0xFF34C759)
-                                  : const Color(0xFFE53935),
-                            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          AppIcons.shopIcon,
+                          width: 18.w,
+                          height: 18.h,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
                           ),
-                          SizedBox(width: 4.w),
-                          Container(
-                            width: 5.r,
-                            height: 5.r,
-                            decoration: BoxDecoration(
-                              color: shop.isOpen
-                                  ? const Color(0xFF34C759)
-                                  : const Color(0xFFE53935),
-                              shape: BoxShape.circle,
-                            ),
+                        ),
+                        SizedBox(width: 8.w),
+                        Text(
+                          StaticString.orderNowBtn,
+                          style: GoogleFonts.jost(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-
-              // User-Provided Favorite Heart SVG Icon (assets/icons/Favorite.svg)
-              GestureDetector(
-                onTap: () => controller.toggleFavorite(shop),
-                child: Padding(
-                  padding: EdgeInsets.all(4.r),
-                  child: SvgPicture.asset(
-                    AppIcons.favoriteIconSvg,
-                    width: 22.w,
-                    height: 22.h,
-                    colorFilter: shop.isFavorite
-                        ? const ColorFilter.mode(
-                            Color(0xFFE53935), BlendMode.srcIn)
-                        : null,
                   ),
                 ),
               ),
             ],
           ),
-
-          SizedBox(height: 14.h),
-
-          // Primary "Order Now" Button with Cart Icon
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () => Get.offAllNamed(AppRoute.homeScreen),
-              borderRadius: BorderRadius.circular(12.r),
-              child: Container(
-                width: double.infinity,
-                height: 42.h,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF195ABE),
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      AppIcons.shopIcon,
-                      width: 18.w,
-                      height: 18.h,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.white,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    SizedBox(width: 8.w),
-                    Text(
-                      StaticString.orderNowBtn,
-                      style: GoogleFonts.jost(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

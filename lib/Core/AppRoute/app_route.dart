@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import '../../View/Screen/Branches/view/branch_search_location_screen.dart';
 import '../../View/Screen/Branches/view/branches_screen.dart';
+import '../../View/Screen/Branches/view/map_options_screen.dart';
+import '../../View/Screen/Branches/view/shop_details_screen.dart';
 import '../../View/Screen/GiftCard/view/add_existing_gift_card_screen.dart';
 import '../../View/Screen/GiftCard/view/added_to_wallet_success_screen.dart';
 import '../../View/Screen/GiftCard/view/gift_card_added_screen.dart';
@@ -49,6 +51,8 @@ class AppRoute {
   static const String giftCardsCatalogScreen = '/gift-cards-catalog';
   static const String branchesScreen = '/branches';
   static const String branchSearchLocationScreen = '/branch-search-location';
+  static const String shopDetailsScreen = '/shop-details';
+  static const String mapOptionsScreen = '/map-options';
 
   static List<GetPage> routes = [
     GetPage(
@@ -146,6 +150,14 @@ class AppRoute {
     GetPage(
       name: branchSearchLocationScreen,
       page: () => const BranchSearchLocationScreen(),
+    ),
+    GetPage(
+      name: shopDetailsScreen,
+      page: () => const ShopDetailsScreen(),
+    ),
+    GetPage(
+      name: mapOptionsScreen,
+      page: () => const MapOptionsScreen(),
     ),
   ];
 }

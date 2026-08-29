@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../Core/AppRoute/app_route.dart';
 import '../../../../Utils/AppColors/app_colors.dart';
 import '../../../../Utils/AppImg/app_img.dart';
 import '../../../../Utils/StaticString/static_string.dart';
@@ -14,7 +15,9 @@ class MyCartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CartController());
+    final CartController controller = Get.isRegistered<CartController>()
+        ? Get.find<CartController>()
+        : Get.put(CartController());
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
@@ -35,11 +38,17 @@ class MyCartScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                // Responsive Back Button with Larger Touch Area
+                // Back Button with Fallback Navigation
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () => Get.back(),
+                    onTap: () {
+                      if (Navigator.canPop(context)) {
+                        Get.back();
+                      } else {
+                        Get.offAllNamed(AppRoute.homeScreen);
+                      }
+                    },
                     borderRadius: BorderRadius.circular(20.r),
                     child: Padding(
                       padding: EdgeInsets.all(8.r),
@@ -62,7 +71,7 @@ class MyCartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 36.w), // Spacer matching back button size for centering
+                SizedBox(width: 36.w), // Spacer for centering title
               ],
             ),
           ),
@@ -84,25 +93,28 @@ class MyCartScreen extends StatelessWidget {
   // ---------- ACTIVE CART CHECKOUT VIEW ----------
   Widget _buildCartCheckoutView(CartController controller) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 16.h),
 
-          // Cart Items List
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.cartItems.length,
-            separatorBuilder: (context, index) => SizedBox(height: 14.h),
-            itemBuilder: (context, index) {
-              final item = controller.cartItems[index];
-              return _buildCartItemCard(item, index, controller);
-            },
+          // Cart Items List using Column (Fail-safe layout without ListView conflicts)
+          Column(
+            children: List.generate(
+              controller.cartItems.length,
+              (index) {
+                final item = controller.cartItems[index];
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 14.h),
+                  child: _buildCartItemCard(item, index, controller),
+                );
+              },
+            ),
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 10.h),
 
           // Discount Code Apply Row
           Row(
@@ -474,7 +486,7 @@ class MyCartScreen extends StatelessWidget {
                   color: isSelected
                       ? const Color(0xFF195ABE)
                       : (isDisabled ? const Color(0xFFCCCCCC) : const Color(0xFF999999)),
-                  width: isSelected ? 6.w : 1.5.w,
+                  width: isSelected ? 4.w : 1.5.w,
                 ),
               ),
             ),

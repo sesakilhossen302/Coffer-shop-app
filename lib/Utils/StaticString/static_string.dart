@@ -81,6 +81,22 @@ class StaticString {
   static const String candy = 'Candy';
   static const String orderNow = 'Order Now';
 
+  // Make Payment & Order Received Strings
+  static const String orderReceived = 'Order Received';
+  static const String paymentMethodTitle = 'Payment method';
+  static const String debitCreditCard = 'Debit / credit card';
+  static const String cardNumber = 'Card number';
+  static const String nameOfHolder = 'Name of the holder';
+  static const String expirationDate = 'expiration date';
+  static const String cvv = 'CVV';
+  static const String safeAndSecurePayment = '100% safe and secure payment';
+  static const String orPayWith = 'or pay with';
+  static const String thanksForYourOrder = 'Thanks for your order';
+  static const String paymentCompletedMsg =
+      'You have just completed your payment. The seller will reach out to you as soon as possible.';
+  static const String preparingYourOrder = 'Preparing your order';
+  static const String preparingCoffeeAndExtras = 'We are preparing your coffee and extras';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

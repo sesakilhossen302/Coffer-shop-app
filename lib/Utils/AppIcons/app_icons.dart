@@ -24,6 +24,9 @@ class AppIcons {
   static const String bakeryIcon = '$basePath/Bakery-Icons.svg';
   static const String snacksIcon = '$basePath/Snacks-Icons.svg';
 
+  // Order Received Hero Banner SVG Illustration
+  static const String orderReceivedImg = '$basePath/Order Received-img.svg';
+
   // Additional App Icons
   static const String coffee = '$basePath/coffee.png';
   static const String home = '$basePath/home.png';

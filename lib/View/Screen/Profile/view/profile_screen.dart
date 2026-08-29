@@ -221,15 +221,7 @@ class ProfileScreen extends StatelessWidget {
                         _buildMenuItem(
                           iconPath: AppIcons.editProfileIconSvg,
                           title: StaticString.editProfile,
-                          onTap: () {
-                            Get.snackbar(
-                              StaticString.editProfile,
-                              'Opening Edit Profile screen...',
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color(0xFF195ABE),
-                              colorText: Colors.white,
-                            );
-                          },
+                          onTap: () => Get.toNamed(AppRoute.editProfileScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.myWalletIconSvg,

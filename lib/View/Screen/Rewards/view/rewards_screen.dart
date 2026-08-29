@@ -505,11 +505,12 @@ class RewardsScreen extends StatelessWidget {
             // Reward Banner Container
             Stack(
               children: [
+                // Background Image
                 Container(
                   height: 135.h,
                   width: 145.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
+                    borderRadius: BorderRadius.circular(20.r),
                     image: DecorationImage(
                       image: NetworkImage(reward.imageUrl),
                       fit: BoxFit.cover,
@@ -517,78 +518,109 @@ class RewardsScreen extends StatelessWidget {
                   ),
                 ),
 
-                // Dark overlay gradient for contrast
+                // Blue Overlay for Redeemable Card (Matching Image 2) OR Dark Gradient
                 Container(
                   height: 135.h,
                   width: 145.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.black.withValues(alpha: 0.1),
-                        Colors.black.withValues(alpha: 0.45),
-                      ],
-                    ),
+                    borderRadius: BorderRadius.circular(20.r),
+                    color: reward.hasRedeemBadge
+                        ? const Color(0xFF1E90FF).withValues(alpha: 0.85)
+                        : Colors.transparent,
+                    gradient: reward.hasRedeemBadge
+                        ? null
+                        : LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withValues(alpha: 0.1),
+                              Colors.black.withValues(alpha: 0.5),
+                            ],
+                          ),
                   ),
                 ),
 
-                // Optional "Redeem Now" Yellow Badge
+                if (reward.hasRedeemBadge) ...[
+                  // Centered COFFECITO Logo + Running Cup Vector Graphics (Matching Image 2 design)
+                  Positioned.fill(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 16.h),
+                        SvgPicture.asset(
+                          AppIcons.coffecitoLogoSvg,
+                          height: 20.h,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(height: 8.h),
+                        SvgPicture.asset(
+                          AppIcons.rewardIcon14Svg,
+                          height: 52.h,
+                          fit: BoxFit.contain,
+                        ),
+                      ],
+                    ),
+                  ),
+                ] else ...[
+                  // Centered Bold Blue Card Title Text ("Galleta gratis" matching Figma screenshot)
+                  Positioned.fill(
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        child: Text(
+                          reward.title,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.jost(
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFF195ABE),
+                            height: 1.05,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+
+                // "Redeem Now" Yellow Badge on Top Right
                 if (reward.hasRedeemBadge)
                   Positioned(
                     top: 10.h,
                     right: 10.w,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFB800),
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                       child: Text(
                         StaticString.redeemNow,
                         style: GoogleFonts.jost(
-                          fontSize: 10.sp,
+                          fontSize: 10.5.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF222222),
                         ),
                       ),
                     ),
                   ),
-
-                // Card Title Text
-                Positioned(
-                  left: 12.w,
-                  bottom: 12.h,
-                  right: 12.w,
-                  child: Text(
-                    reward.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.jost(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      height: 1.1,
-                    ),
-                  ),
-                ),
               ],
             ),
 
-            SizedBox(height: 6.h),
+            SizedBox(height: 8.h),
 
             // Points Pill Badge (🪙 50 pts)
             Row(
               children: [
                 Text(
                   '🪙 ',
-                  style: TextStyle(fontSize: 13.sp),
+                  style: TextStyle(fontSize: 14.sp),
                 ),
                 Text(
                   '${reward.requiredPoints} pts',
                   style: GoogleFonts.jost(
-                    fontSize: 13.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF195ABE),
                   ),

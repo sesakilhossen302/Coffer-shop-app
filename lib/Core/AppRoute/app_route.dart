@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../../View/Screen/Home/view/home_screen.dart';
 import '../../View/Screen/LoadingScreen/loading_screen.dart';
 import '../../View/Screen/Login/view/login_screen.dart';
+import '../../View/Screen/Notification/view/notification_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
@@ -13,6 +14,7 @@ class AppRoute {
   static const String signUpScreen = '/sign-up';
   static const String otpScreen = '/otp';
   static const String homeScreen = '/home';
+  static const String notificationScreen = '/notification';
 
   static List<GetPage> routes = [
     GetPage(
@@ -43,6 +45,11 @@ class AppRoute {
     GetPage(
       name: homeScreen,
       page: () => const HomeScreen(),
+      transition: Transition.rightToLeftWithFade,
+    ),
+    GetPage(
+      name: notificationScreen,
+      page: () => const NotificationScreen(),
       transition: Transition.rightToLeftWithFade,
     ),
   ];

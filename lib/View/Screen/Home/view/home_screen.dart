@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../Core/AppRoute/app_route.dart';
 import '../../../../Utils/AppColors/app_colors.dart';
 import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/AppImg/app_img.dart';
@@ -142,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => Get.toNamed(AppRoute.notificationScreen),
                         child: Container(
                           padding: EdgeInsets.all(4.r),
                           child: SvgPicture.asset(

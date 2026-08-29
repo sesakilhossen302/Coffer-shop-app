@@ -603,6 +603,8 @@ class RewardsScreen extends StatelessWidget {
 
   // ---------- GIFT CARD BANNER WIDGET ----------
   Widget _buildGiftCardBanner(GiftCardModel card, RewardsController controller) {
+    final bool isGiftCard1 = card.id == 'g1';
+
     return GestureDetector(
       onTap: () => controller.purchaseGiftCard(card),
       child: Container(
@@ -622,18 +624,42 @@ class RewardsScreen extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            // SVG Illustration (Positioned on the left side filling card cleanly)
-            Positioned(
-              left: 16.w,
-              top: 14.h,
-              bottom: 14.h,
-              right: 90.w,
-              child: SvgPicture.asset(
-                card.svgPath,
-                fit: BoxFit.contain,
-                alignment: Alignment.centerLeft,
+            if (isGiftCard1) ...[
+              // Gift Card 1 (400MXN): COFFECITO Logo on Top Left
+              Positioned(
+                left: 20.w,
+                top: 20.h,
+                child: SvgPicture.asset(
+                  AppIcons.coffecitoLogoSvg,
+                  height: 24.h,
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
+
+              // Gift Card 1: Running Cup Character on Bottom Left (Without ORDEN CONFIRMADA text!)
+              Positioned(
+                left: 20.w,
+                bottom: 16.h,
+                child: SvgPicture.asset(
+                  card.svgPath, // AppIcons.rewardIcon14Svg
+                  height: 72.h,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ] else ...[
+              // Gift Card 2 (800MXN): 800MXN-Icons.svg containing Logo + Lifting Cup Character
+              Positioned(
+                left: 16.w,
+                top: 14.h,
+                bottom: 14.h,
+                right: 90.w,
+                child: SvgPicture.asset(
+                  card.svgPath, // AppIcons.giftCard800MXNSvg
+                  fit: BoxFit.contain,
+                  alignment: Alignment.centerLeft,
+                ),
+              ),
+            ],
 
             // Bottom Right Gold Coin & Amount Pill (e.g. 🪙 400MXN / 800MXN)
             Positioned(

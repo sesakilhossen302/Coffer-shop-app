@@ -34,7 +34,7 @@ class RewardsController extends GetxController {
       title: 'COFFECITO',
       amountText: '400MXN',
       cardColor: const Color(0xFF1E90FF),
-      svgPath: AppIcons.orderReceivedImg,
+      svgPath: AppIcons.rewardIcon14Svg,
     ),
     GiftCardModel(
       id: 'g2',

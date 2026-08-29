@@ -275,6 +275,19 @@ class StaticString {
   static const String johnAlexEmail = 'alex@example.com';
   static const String johnAlexPhone = '+52 9999 10 20 30';
 
+  // My Wallet Screen Strings
+  static const String myWalletTitle = 'My Wallet';
+  static const String walletBalance = 'Wallet Balance';
+  static const String walletBalanceValue = '1200 MXN';
+  static const String addMoney = 'Add Money';
+  static const String recentTransactions = 'Recent Transactions';
+  static const String caffecitoGiftCardTitle = 'Caffecito (Gift Card)';
+  static const String caffecitoOrderTitle = 'Caffecito (Order)';
+  static const String addedMoneyTitle = 'Added Money';
+  static const String sentCardTitle = 'Sent Card';
+  static const String purchaseSub = 'Purchase';
+  static const String paymentSub = 'Payment';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

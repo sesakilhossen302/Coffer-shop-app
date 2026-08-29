@@ -504,14 +504,14 @@ class RewardsScreen extends StatelessWidget {
                   ),
                 ),
 
-                // Blue Overlay for Redeemable Card (Matching Image 2) OR Dark Gradient
+                // Blue Overlay for Redeemable Card (Matching Figma Screenshot) OR Dark Gradient
                 Container(
                   height: 135.h,
                   width: 145.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
                     color: reward.hasRedeemBadge
-                        ? const Color(0xFF1E90FF).withValues(alpha: 0.85)
+                        ? const Color(0xFF1E90FF).withValues(alpha: 0.38)
                         : Colors.transparent,
                     gradient: reward.hasRedeemBadge
                         ? null

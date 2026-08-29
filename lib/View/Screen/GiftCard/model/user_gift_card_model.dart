@@ -5,7 +5,8 @@ class UserGiftCardModel {
   final String senderName;
   final String email;
   final String amountText;
-  final String badgeType; // 'Received' or 'Purchased'
+  final String dateText;
+  final String badgeType; // 'Received', 'Purchased', 'Sent', 'Redeemed'
   final Color cardColor;
 
   UserGiftCardModel({
@@ -13,6 +14,7 @@ class UserGiftCardModel {
     required this.senderName,
     required this.email,
     required this.amountText,
+    required this.dateText,
     required this.badgeType,
     this.cardColor = const Color(0xFF195ABE),
   });

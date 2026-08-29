@@ -27,6 +27,10 @@ class AppIcons {
   // Order Received Hero Banner SVG Illustration
   static const String orderReceivedImg = '$basePath/Order Received-img.svg';
 
+  // Payment Options SVG Icons
+  static const String applePayIcon = '$basePath/ApplePay.svg';
+  static const String googlePayIcon = '$basePath/GooglePay.svg';
+
   // Additional App Icons
   static const String coffee = '$basePath/coffee.png';
   static const String home = '$basePath/home.png';

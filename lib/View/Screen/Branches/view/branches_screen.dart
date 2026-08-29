@@ -143,43 +143,35 @@ class BranchesScreen extends StatelessWidget {
                 SizedBox(height: 16.h),
 
                 // Search Location Field
-                Container(
-                  height: 46.h,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF5F6F8),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 14.w),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.search_rounded,
-                        color: const Color(0xFF999999),
-                        size: 20.r,
-                      ),
-                      SizedBox(width: 10.w),
-                      Expanded(
-                        child: TextField(
-                          controller: controller.searchController,
-                          onChanged: (val) => controller.searchQuery.value = val,
-                          style: GoogleFonts.jost(
-                            fontSize: 13.5.sp,
-                            color: const Color(0xFF222222),
-                          ),
-                          decoration: InputDecoration(
-                            hintText: StaticString.searchLocationPlaceholder,
-                            hintStyle: GoogleFonts.jost(
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoute.branchSearchLocationScreen),
+                  child: Container(
+                    height: 46.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F6F8),
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search_rounded,
+                          color: const Color(0xFF999999),
+                          size: 20.r,
+                        ),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Text(
+                            StaticString.searchLocationPlaceholder,
+                            style: GoogleFonts.jost(
                               fontSize: 13.sp,
                               color: const Color(0xFF999999),
                             ),
-                            border: InputBorder.none,
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -256,10 +256,14 @@ class StaticString {
   static const String openInGoogleMaps = 'Open in Google Maps';
   static const String openInAppleMaps = 'Open in Apple Maps';
 
-  // Profile Screen Strings
+  // Profile & Edit Profile Strings
   static const String profileTitle = 'Profile';
   static const String manageAccountAndPreferences = 'Manage your account and preferences';
   static const String editProfile = 'Edit Profile';
+  static const String editProfileTitle = 'Edit profile';
+  static const String updateNow = 'Update now';
+  static const String editProfileSuccessful = 'Edit Profile Successful';
+  static const String profileUpdatedSuccessfully = 'Your profile has been updated successfully.';
   static const String myWallet = 'My Wallet';
   static const String favoriteMenu = 'Favorite';
   static const String orderHistory = 'Order History';

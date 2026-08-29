@@ -55,7 +55,7 @@ class ItemDetailsScreen extends StatelessWidget {
                     StaticString.itemDetails,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.jost(
-                      fontSize: 20.sp,
+                      fontSize: 19.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -90,52 +90,54 @@ class ItemDetailsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 14.h),
 
-                  // Hero Product Image
+                  // Compact Hero Product Image
                   Obx(
                     () => CustomNetworkImage(
                       imageUrl: controller.productImageUrl.value,
                       width: double.infinity,
-                      height: 220.h,
-                      borderRadius: 18.r,
+                      height: 165.h,
+                      borderRadius: 16.r,
                     ),
                   ),
 
-                  SizedBox(height: 18.h),
+                  SizedBox(height: 14.h),
 
                   // Title & Description
                   Obx(
                     () => Text(
                       controller.productTitle.value,
                       style: GoogleFonts.jost(
-                        fontSize: 24.sp,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: const Color(0xFF1E90FF),
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 4.h),
 
                   Obx(
                     () => Text(
                       controller.productDescription.value,
                       style: GoogleFonts.jost(
-                        fontSize: 13.sp,
+                        fontSize: 11.5.sp,
                         color: const Color(0xFF888888),
-                        height: 1.35,
+                        height: 1.3,
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 14.h),
+                  const Divider(color: Color(0xFFF2F4F7), thickness: 1),
+                  SizedBox(height: 14.h),
 
                   // Size Selection Section
                   Text(
                     StaticString.size,
                     style: GoogleFonts.jost(
-                      fontSize: 15.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF1E90FF),
                     ),
@@ -145,26 +147,28 @@ class ItemDetailsScreen extends StatelessWidget {
                     () => Row(
                       children: [
                         _buildSizeOption('S', controller),
-                        SizedBox(width: 14.w),
+                        SizedBox(width: 12.w),
                         _buildSizeOption('M', controller),
-                        SizedBox(width: 14.w),
+                        SizedBox(width: 12.w),
                         _buildSizeOption('L', controller),
                       ],
                     ),
                   ),
 
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 14.h),
+                  const Divider(color: Color(0xFFF2F4F7), thickness: 1),
+                  SizedBox(height: 14.h),
 
                   // Extras (Optional) Section
                   Text(
                     StaticString.extrasOptional,
                     style: GoogleFonts.jost(
-                      fontSize: 15.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF1E90FF),
                     ),
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 8.h),
                   Obx(
                     () => Column(
                       children: [
@@ -176,7 +180,9 @@ class ItemDetailsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 16.h),
+                  const Divider(color: Color(0xFFF2F4F7), thickness: 1),
+                  SizedBox(height: 16.h),
 
                   // Bottom Total & Action Buttons Row
                   Row(
@@ -188,7 +194,7 @@ class ItemDetailsScreen extends StatelessWidget {
                           Text(
                             'TOTAL',
                             style: GoogleFonts.jost(
-                              fontSize: 11.sp,
+                              fontSize: 10.5.sp,
                               fontWeight: FontWeight.w500,
                               color: const Color(0xFF888888),
                             ),
@@ -205,7 +211,7 @@ class ItemDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(width: 14.w),
+                      SizedBox(width: 16.w),
 
                       // Action Buttons (Add to Cart & Order Now)
                       Expanded(
@@ -217,14 +223,14 @@ class ItemDetailsScreen extends StatelessWidget {
                                 color: Colors.transparent,
                                 child: InkWell(
                                   onTap: controller.addToCart,
-                                  borderRadius: BorderRadius.circular(14.r),
+                                  borderRadius: BorderRadius.circular(12.r),
                                   child: Container(
-                                    height: 48.h,
+                                    height: 44.h,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.circular(14.r),
+                                      borderRadius: BorderRadius.circular(12.r),
                                       border: Border.all(
-                                        color: const Color(0xFFCCCCCC),
+                                        color: const Color(0xFFD0D7E2),
                                         width: 1.2,
                                       ),
                                     ),
@@ -234,7 +240,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.jost(
-                                          fontSize: 13.sp,
+                                          fontSize: 12.5.sp,
                                           fontWeight: FontWeight.bold,
                                           color: const Color(0xFF555555),
                                         ),
@@ -252,12 +258,12 @@ class ItemDetailsScreen extends StatelessWidget {
                                 color: Colors.transparent,
                                 child: InkWell(
                                   onTap: controller.orderNow,
-                                  borderRadius: BorderRadius.circular(14.r),
+                                  borderRadius: BorderRadius.circular(12.r),
                                   child: Container(
-                                    height: 48.h,
+                                    height: 44.h,
                                     decoration: BoxDecoration(
                                       color: const Color(0xFF195ABE),
-                                      borderRadius: BorderRadius.circular(14.r),
+                                      borderRadius: BorderRadius.circular(12.r),
                                     ),
                                     child: Center(
                                       child: Text(
@@ -265,7 +271,7 @@ class ItemDetailsScreen extends StatelessWidget {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.jost(
-                                          fontSize: 14.sp,
+                                          fontSize: 13.5.sp,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
@@ -299,17 +305,17 @@ class ItemDetailsScreen extends StatelessWidget {
       child: GestureDetector(
         onTap: () => controller.selectSize(size),
         child: Container(
-          height: 44.h,
+          height: 38.h,
           decoration: BoxDecoration(
             color: isSelected ? const Color(0xFF195ABE) : const Color(0xFFF4F5F7),
-            borderRadius: BorderRadius.circular(12.r),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           child: Center(
             child: Text(
               size,
               style: GoogleFonts.jost(
-                fontSize: 15.sp,
-                fontWeight: FontWeight.bold,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w600,
                 color: isSelected ? Colors.white : const Color(0xFF666666),
               ),
             ),
@@ -326,29 +332,29 @@ class ItemDetailsScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.toggleExtra(title),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.h),
+        padding: EdgeInsets.symmetric(vertical: 5.h),
         child: Row(
           children: [
             // Custom Radio Check Indicator
             Container(
-              width: 22.w,
-              height: 22.h,
+              width: 18.w,
+              height: 18.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: isSelected ? const Color(0xFF195ABE) : const Color(0xFFCCCCCC),
-                  width: isSelected ? 6.w : 1.5.w,
+                  width: isSelected ? 5.w : 1.5.w,
                 ),
               ),
             ),
-            SizedBox(width: 12.w),
+            SizedBox(width: 10.w),
 
             // Extra Title Text
             Expanded(
               child: Text(
                 title,
                 style: GoogleFonts.jost(
-                  fontSize: 14.sp,
+                  fontSize: 12.5.sp,
                   color: isSelected ? const Color(0xFF222222) : const Color(0xFF777777),
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 ),
@@ -359,7 +365,7 @@ class ItemDetailsScreen extends StatelessWidget {
             Text(
               '+ \$15',
               style: GoogleFonts.jost(
-                fontSize: 14.sp,
+                fontSize: 12.5.sp,
                 fontWeight: FontWeight.bold,
                 color: const Color(0xFF195ABE),
               ),

@@ -73,20 +73,19 @@ class MyFavoriteScreen extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          // 2-Tab Segmented Switcher (Shop / Item)
+          // Pixel-Perfect 2-Tab Segmented Switcher (Shop / Item)
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Container(
-              height: 48.h,
+              height: 46.h,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12.r),
                 border: Border.all(
                   color: const Color(0xFFE5E9F0),
-                  width: 1,
+                  width: 1.2,
                 ),
               ),
-              padding: EdgeInsets.all(3.r),
               child: Obx(
                 () => Row(
                   children: [
@@ -94,29 +93,15 @@ class MyFavoriteScreen extends StatelessWidget {
                       controller: controller,
                       index: 0,
                       title: StaticString.shopTab,
-                      iconWidget: Icon(
-                        Icons.storefront_rounded,
-                        size: 18.r,
-                        color: controller.selectedTab.value == 0
-                            ? Colors.white
-                            : const Color(0xFF777777),
-                      ),
+                      icon: Icons.storefront_outlined,
+                      isLeft: true,
                     ),
                     _buildTabButton(
                       controller: controller,
                       index: 1,
                       title: StaticString.itemTab,
-                      iconWidget: SvgPicture.asset(
-                        AppIcons.shopIcon,
-                        width: 16.w,
-                        height: 16.h,
-                        colorFilter: ColorFilter.mode(
-                          controller.selectedTab.value == 1
-                              ? Colors.white
-                              : const Color(0xFF777777),
-                          BlendMode.srcIn,
-                        ),
-                      ),
+                      icon: Icons.shopping_bag_outlined,
+                      isLeft: false,
                     ),
                   ],
                 ),
@@ -185,30 +170,38 @@ class MyFavoriteScreen extends StatelessWidget {
     required FavoriteController controller,
     required int index,
     required String title,
-    required Widget iconWidget,
+    required IconData icon,
+    required bool isLeft,
   }) {
     final bool isSelected = controller.selectedTab.value == index;
 
     return Expanded(
       child: GestureDetector(
         onTap: () => controller.selectedTab.value = index,
-        child: Container(
+        behavior: HitTestBehavior.opaque,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
           decoration: BoxDecoration(
             color: isSelected ? const Color(0xFF1E90FF) : Colors.transparent,
-            borderRadius: BorderRadius.circular(9.r),
+            borderRadius: isLeft
+                ? BorderRadius.horizontal(left: Radius.circular(10.r))
+                : BorderRadius.horizontal(right: Radius.circular(10.r)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              iconWidget,
+              Icon(
+                icon,
+                size: 19.r,
+                color: isSelected ? Colors.white : const Color(0xFF999999),
+              ),
               SizedBox(width: 8.w),
               Text(
                 title,
                 style: GoogleFonts.jost(
-                  fontSize: 13.5.sp,
-                  fontWeight:
-                      isSelected ? FontWeight.bold : FontWeight.normal,
-                  color: isSelected ? Colors.white : const Color(0xFF777777),
+                  fontSize: 14.sp,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                  color: isSelected ? Colors.white : const Color(0xFF999999),
                 ),
               ),
             ],

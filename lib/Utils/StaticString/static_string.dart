@@ -288,6 +288,17 @@ class StaticString {
   static const String purchaseSub = 'Purchase';
   static const String paymentSub = 'Payment';
 
+  // My Favorite Screen Strings
+  static const String myFavoriteTitle = 'My Favorite';
+  static const String shopTab = 'Shop';
+  static const String itemTab = 'Item';
+  static const String noFavoriteShopYet = 'No favorite shop yet';
+  static const String addFavoriteShopsDesc = 'Add  your favorite shops to see them here.';
+  static const String exploreShops = 'Explore shops';
+  static const String noFavoriteItemYet = 'No favorite item yet';
+  static const String addFavoriteItemDesc = 'Add  your favorite item to see them here.';
+  static const String exploreOrder = 'Explore order';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

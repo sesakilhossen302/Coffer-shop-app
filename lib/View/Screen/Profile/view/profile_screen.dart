@@ -7,6 +7,7 @@ import '../../../../Core/AppRoute/app_route.dart';
 import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/StaticString/static_string.dart';
 import '../controller/profile_controller.dart';
+import 'widgets/logout_confirmation_dialog.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -259,7 +260,12 @@ class ProfileScreen extends StatelessWidget {
                           textColor: const Color(0xFFFF3B30),
                           iconColor: const Color(0xFFFF3B30),
                           arrowColor: const Color(0xFFFF3B30),
-                          onTap: () => controller.logout(),
+                          onTap: () => showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) =>
+                                const LogoutConfirmationDialog(),
+                          ),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.deleteAccountIconSvg,

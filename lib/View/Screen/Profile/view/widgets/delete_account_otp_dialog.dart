@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../../Core/AppRoute/app_route.dart';
 import '../../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../../Utils/StaticString/static_string.dart';
+import 'delete_account_success_dialog.dart';
 
 class DeleteAccountOtpDialog extends StatelessWidget {
   const DeleteAccountOtpDialog({super.key});
@@ -173,15 +173,13 @@ class DeleteAccountOtpDialog extends StatelessWidget {
                     color: Colors.transparent,
                     child: InkWell(
                       onTap: () {
-                        Get.back();
-                        Get.snackbar(
-                          'Account Deleted',
-                          'Your account has been permanently removed.',
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: const Color(0xFFD32F2F),
-                          colorText: Colors.white,
+                        Get.back(); // Close OTP dialog
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) =>
+                              const DeleteAccountSuccessDialog(),
                         );
-                        Get.offAllNamed(AppRoute.startNowScreen);
                       },
                       borderRadius: BorderRadius.circular(12.r),
                       child: Container(

@@ -184,104 +184,96 @@ class ItemDetailsScreen extends StatelessWidget {
                   const Divider(color: Color(0xFFF2F4F7), thickness: 1),
                   SizedBox(height: 16.h),
 
-                  // Bottom Total & Action Buttons Row
+                  // Total Price Row (Positioned above buttons)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'TOTAL',
+                        style: GoogleFonts.jost(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xFF888888),
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      Obx(
+                        () => Text(
+                          '\$${controller.totalPrice.toStringAsFixed(2)}',
+                          style: GoogleFonts.jost(
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFF195ABE),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 20.h),
+
+                  // Action Buttons Row (Add to Cart & Order Now)
                   Row(
                     children: [
-                      // Total Price Display
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'TOTAL',
-                            style: GoogleFonts.jost(
-                              fontSize: 10.5.sp,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xFF888888),
-                            ),
-                          ),
-                          Obx(
-                            () => Text(
-                              '\$${controller.totalPrice.toStringAsFixed(2)}',
-                              style: GoogleFonts.jost(
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.w900,
-                                color: const Color(0xFF195ABE),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 16.w),
-
-                      // Action Buttons (Add to Cart & Order Now)
+                      // Add to Cart Outlined Button
                       Expanded(
-                        child: Row(
-                          children: [
-                            // Add to Cart Outlined Button
-                            Expanded(
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: controller.addToCart,
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  child: Container(
-                                    height: 44.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(12.r),
-                                      border: Border.all(
-                                        color: const Color(0xFFD0D7E2),
-                                        width: 1.2,
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        StaticString.addToCart,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.jost(
-                                          fontSize: 12.5.sp,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color(0xFF555555),
-                                        ),
-                                      ),
-                                    ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: controller.addToCart,
+                            borderRadius: BorderRadius.circular(14.r),
+                            child: Container(
+                              height: 48.h,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(14.r),
+                                border: Border.all(
+                                  color: const Color(0xFFC0C7D2),
+                                  width: 1.2,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  StaticString.addToCart,
+                                  style: GoogleFonts.jost(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xFF555555),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(width: 8.w),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 14.w),
 
-                            // Order Now Filled Blue Button
-                            Expanded(
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: controller.orderNow,
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  child: Container(
-                                    height: 44.h,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF195ABE),
-                                      borderRadius: BorderRadius.circular(12.r),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        StaticString.orderNow,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.jost(
-                                          fontSize: 13.5.sp,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
+                      // Order Now Filled Blue Button
+                      Expanded(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: controller.orderNow,
+                            borderRadius: BorderRadius.circular(14.r),
+                            child: Container(
+                              height: 48.h,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF195ABE),
+                                borderRadius: BorderRadius.circular(14.r),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  StaticString.orderNow,
+                                  style: GoogleFonts.jost(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],

@@ -19,6 +19,13 @@ class BranchSearchLocationScreen extends StatelessWidget {
         ? Get.find<BranchesController>()
         : Get.put(BranchesController());
 
+    final String? passedQuery =
+        Get.arguments is String ? Get.arguments as String : null;
+    if (passedQuery != null && passedQuery.isNotEmpty) {
+      controller.searchQuery.value = passedQuery;
+      controller.searchController.text = passedQuery;
+    }
+
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(

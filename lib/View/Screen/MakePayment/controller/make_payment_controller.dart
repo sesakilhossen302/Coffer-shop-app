@@ -4,11 +4,35 @@ import '../../../../Core/AppRoute/app_route.dart';
 import '../view/widgets/payment_success_dialog.dart';
 
 class MakePaymentController extends GetxController {
-  final TextEditingController cardNumberController =
-      TextEditingController(text: '5554 2834 8857 5370');
-  final TextEditingController holderNameController =
-      TextEditingController(text: 'Nombre Apellido');
-  final TextEditingController cvvController = TextEditingController(text: '•••');
+  TextEditingController _cardNumberController = TextEditingController(text: '5554 2834 8857 5370');
+  TextEditingController get cardNumberController {
+    try {
+      final _ = _cardNumberController.text;
+    } catch (_) {
+      _cardNumberController = TextEditingController(text: '5554 2834 8857 5370');
+    }
+    return _cardNumberController;
+  }
+
+  TextEditingController _holderNameController = TextEditingController(text: 'Nombre Apellido');
+  TextEditingController get holderNameController {
+    try {
+      final _ = _holderNameController.text;
+    } catch (_) {
+      _holderNameController = TextEditingController(text: 'Nombre Apellido');
+    }
+    return _holderNameController;
+  }
+
+  TextEditingController _cvvController = TextEditingController(text: '•••');
+  TextEditingController get cvvController {
+    try {
+      final _ = _cvvController.text;
+    } catch (_) {
+      _cvvController = TextEditingController(text: '•••');
+    }
+    return _cvvController;
+  }
 
   final RxString selectedMonth = 'January'.obs;
   final RxString selectedYear = '2026'.obs;
@@ -41,23 +65,14 @@ class MakePaymentController extends GetxController {
   }
 
   void processPayment() {
-    // Show Payment Success Dialog (Screen 3 matching design)
     Get.dialog(
       PaymentSuccessDialog(
         onOkPressed: () {
-          Get.back(); // Close dialog
-          Get.offNamed(AppRoute.orderReceivedScreen); // Navigate to Order Received screen (Screen 1)
+          Get.back();
+          Get.offNamed(AppRoute.orderReceivedScreen);
         },
       ),
       barrierDismissible: false,
     );
-  }
-
-  @override
-  void onClose() {
-    cardNumberController.dispose();
-    holderNameController.dispose();
-    cvvController.dispose();
-    super.onClose();
   }
 }

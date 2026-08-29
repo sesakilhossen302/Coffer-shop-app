@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import '../../../../Core/AppRoute/app_route.dart';
+import '../../../../Utils/StaticString/static_string.dart';
 import '../../Home/model/product_model.dart';
+import '../view/widgets/custom_info_dialog.dart';
 
 class ItemDetailsController extends GetxController {
   final RxBool isFavorite = false.obs;
@@ -40,6 +42,15 @@ class ItemDetailsController extends GetxController {
 
   void toggleFavorite() {
     isFavorite.value = !isFavorite.value;
+    if (isFavorite.value) {
+      Get.dialog(
+        CustomInfoDialog(
+          title: StaticString.addedAsFav,
+          message: StaticString.productAddedToFavMsg,
+          onOkPressed: () => Get.back(),
+        ),
+      );
+    }
   }
 
   void selectSize(String size) {
@@ -55,10 +66,12 @@ class ItemDetailsController extends GetxController {
   }
 
   void addToCart() {
-    Get.snackbar(
-      'Added to Cart',
-      '${productTitle.value} ($customizationSummary) added to cart!',
-      snackPosition: SnackPosition.BOTTOM,
+    Get.dialog(
+      CustomInfoDialog(
+        title: StaticString.addedToCart,
+        message: StaticString.productAddedToCartMsg,
+        onOkPressed: () => Get.back(),
+      ),
     );
   }
 

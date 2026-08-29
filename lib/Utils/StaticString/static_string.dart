@@ -256,6 +256,21 @@ class StaticString {
   static const String openInGoogleMaps = 'Open in Google Maps';
   static const String openInAppleMaps = 'Open in Apple Maps';
 
+  // Profile Screen Strings
+  static const String profileTitle = 'Profile';
+  static const String manageAccountAndPreferences = 'Manage your account and preferences';
+  static const String editProfile = 'Edit Profile';
+  static const String myWallet = 'My Wallet';
+  static const String favoriteMenu = 'Favorite';
+  static const String orderHistory = 'Order History';
+  static const String support = 'Support';
+  static const String privacyPolicy = 'Privacy Policy';
+  static const String logOut = 'Log Out';
+  static const String deleteAccount = 'Delete Account';
+  static const String johnAlex = 'John Alex';
+  static const String johnAlexEmail = 'alex@example.com';
+  static const String johnAlexPhone = '+52 9999 10 20 30';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

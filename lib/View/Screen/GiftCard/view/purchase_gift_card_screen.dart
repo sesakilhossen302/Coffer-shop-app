@@ -146,124 +146,138 @@ class PurchaseGiftCardScreen extends StatelessWidget {
                   Text(
                     StaticString.messageOptional,
                     style: GoogleFonts.jost(
-                      fontSize: 13.5.sp,
+                      fontSize: 14.5.sp,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF222222),
                     ),
                   ),
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 8.h),
                   Container(
+                    height: 110.h,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: const Color(0xFFF5F6F8),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                    child: Stack(
                       children: [
-                        TextField(
-                          controller: controller.messageController,
-                          maxLines: 3,
-                          maxLength: 100,
-                          style: GoogleFonts.jost(
-                            fontSize: 13.sp,
-                            color: const Color(0xFF222222),
-                          ),
-                          decoration: InputDecoration(
-                            hintText: StaticString.messagePlaceholder,
-                            hintStyle: GoogleFonts.jost(
-                              fontSize: 12.5.sp,
-                              color: const Color(0xFFAAAAAA),
+                        Positioned.fill(
+                          child: TextField(
+                            controller: controller.messageController,
+                            maxLines: 3,
+                            maxLength: 100,
+                            style: GoogleFonts.jost(
+                              fontSize: 13.5.sp,
+                              color: const Color(0xFF222222),
                             ),
-                            border: InputBorder.none,
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                            counterText: '', // Custom counter placed below
+                            decoration: InputDecoration(
+                              hintText: StaticString.messagePlaceholder,
+                              hintStyle: GoogleFonts.jost(
+                                fontSize: 13.sp,
+                                color: const Color(0xFF999999),
+                              ),
+                              border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.zero,
+                              counterText: '',
+                            ),
                           ),
                         ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          '0/100',
-                          style: GoogleFonts.jost(
-                            fontSize: 10.5.sp,
-                            color: const Color(0xFFAAAAAA),
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: Text(
+                            '0/100',
+                            style: GoogleFonts.jost(
+                              fontSize: 12.sp,
+                              color: const Color(0xFF999999),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
 
-                  SizedBox(height: 18.h),
+                  SizedBox(height: 20.h),
 
                   // To (Receiver Name) Input Field
                   Text(
                     StaticString.toReceiver,
                     style: GoogleFonts.jost(
-                      fontSize: 13.5.sp,
+                      fontSize: 14.5.sp,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF222222),
                     ),
                   ),
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 8.h),
                   Container(
+                    height: 52.h,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: const Color(0xFFF5F6F8),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
-                    child: TextField(
-                      controller: controller.receiverNameController,
-                      style: GoogleFonts.jost(
-                        fontSize: 13.sp,
-                        color: const Color(0xFF222222),
-                      ),
-                      decoration: InputDecoration(
-                        hintText: StaticString.toReceiverPlaceholder,
-                        hintStyle: GoogleFonts.jost(
-                          fontSize: 12.5.sp,
-                          color: const Color(0xFFAAAAAA),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Center(
+                      child: TextField(
+                        controller: controller.receiverNameController,
+                        style: GoogleFonts.jost(
+                          fontSize: 13.5.sp,
+                          color: const Color(0xFF222222),
                         ),
-                        border: InputBorder.none,
-                        isDense: true,
-                        contentPadding: EdgeInsets.zero,
+                        decoration: InputDecoration(
+                          hintText: StaticString.toReceiverPlaceholder,
+                          hintStyle: GoogleFonts.jost(
+                            fontSize: 13.sp,
+                            color: const Color(0xFF999999),
+                          ),
+                          border: InputBorder.none,
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                        ),
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 18.h),
+                  SizedBox(height: 20.h),
 
                   // Email Address Input Field
                   Text(
                     StaticString.emailAddressLabel,
                     style: GoogleFonts.jost(
-                      fontSize: 13.5.sp,
+                      fontSize: 14.5.sp,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF222222),
                     ),
                   ),
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 8.h),
                   Container(
+                    height: 52.h,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: const Color(0xFFF5F6F8),
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
-                    child: TextField(
-                      controller: controller.receiverEmailController,
-                      keyboardType: TextInputType.emailAddress,
-                      style: GoogleFonts.jost(
-                        fontSize: 13.sp,
-                        color: const Color(0xFF222222),
-                      ),
-                      decoration: InputDecoration(
-                        hintText: StaticString.emailAddressPlaceholder,
-                        hintStyle: GoogleFonts.jost(
-                          fontSize: 12.5.sp,
-                          color: const Color(0xFFAAAAAA),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Center(
+                      child: TextField(
+                        controller: controller.receiverEmailController,
+                        keyboardType: TextInputType.emailAddress,
+                        style: GoogleFonts.jost(
+                          fontSize: 13.5.sp,
+                          color: const Color(0xFF222222),
                         ),
-                        border: InputBorder.none,
-                        isDense: true,
-                        contentPadding: EdgeInsets.zero,
+                        decoration: InputDecoration(
+                          hintText: StaticString.emailAddressPlaceholder,
+                          hintStyle: GoogleFonts.jost(
+                            fontSize: 13.sp,
+                            color: const Color(0xFF999999),
+                          ),
+                          border: InputBorder.none,
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                        ),
                       ),
                     ),
                   ),

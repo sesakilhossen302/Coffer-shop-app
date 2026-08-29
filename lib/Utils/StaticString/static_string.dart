@@ -320,6 +320,11 @@ class StaticString {
   static const String sampleDate = 'May 13, 2026';
   static const String qtyPrefix = 'Qty: ';
 
+  // Settings: Terms & Privacy Strings
+  static const String termsAndConditionsTitle = 'Terms & Conditions';
+  static const String privacyPolicyTitle = 'Privacy Policy';
+  static const String lastUpdatedDate = 'Last updated: 12-12-2025';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

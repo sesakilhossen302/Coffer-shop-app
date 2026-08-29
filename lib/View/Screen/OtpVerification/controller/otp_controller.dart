@@ -4,7 +4,16 @@ import 'package:get/get.dart';
 import '../../../../Core/AppRoute/app_route.dart';
 
 class OtpController extends GetxController {
-  final TextEditingController pinController = TextEditingController();
+  TextEditingController _pinController = TextEditingController();
+  TextEditingController get pinController {
+    try {
+      final _ = _pinController.text;
+    } catch (_) {
+      _pinController = TextEditingController();
+    }
+    return _pinController;
+  }
+
   final RxBool isEmailVerification = false.obs;
   final RxString targetDestination = '+52 9999 10 20 30'.obs;
   final RxBool hasError = false.obs;
@@ -64,7 +73,6 @@ class OtpController extends GetxController {
   @override
   void onClose() {
     _timer?.cancel();
-    pinController.dispose();
     super.onClose();
   }
 }

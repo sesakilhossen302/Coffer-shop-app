@@ -4,10 +4,45 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class SignUpController extends GetxController {
-  final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController dobController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+  TextEditingController _fullNameController = TextEditingController();
+  TextEditingController get fullNameController {
+    try {
+      final _ = _fullNameController.text;
+    } catch (_) {
+      _fullNameController = TextEditingController();
+    }
+    return _fullNameController;
+  }
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController get emailController {
+    try {
+      final _ = _emailController.text;
+    } catch (_) {
+      _emailController = TextEditingController();
+    }
+    return _emailController;
+  }
+
+  TextEditingController _dobController = TextEditingController();
+  TextEditingController get dobController {
+    try {
+      final _ = _dobController.text;
+    } catch (_) {
+      _dobController = TextEditingController();
+    }
+    return _dobController;
+  }
+
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController get phoneController {
+    try {
+      final _ = _phoneController.text;
+    } catch (_) {
+      _phoneController = TextEditingController();
+    }
+    return _phoneController;
+  }
 
   final Rx<Country> selectedCountry = Country(
     phoneCode: '52',
@@ -46,14 +81,5 @@ class SignUpController extends GetxController {
 
   void submitSignUp() {
     // Handle signup logic and navigate to OTP Verification Screen
-  }
-
-  @override
-  void onClose() {
-    fullNameController.dispose();
-    emailController.dispose();
-    dobController.dispose();
-    phoneController.dispose();
-    super.onClose();
   }
 }

@@ -180,7 +180,6 @@ class ItemDetailsScreen extends StatelessWidget {
 
                   // Bottom Total & Action Buttons Row
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Total Price Display
                       Column(
@@ -189,7 +188,7 @@ class ItemDetailsScreen extends StatelessWidget {
                           Text(
                             'TOTAL',
                             style: GoogleFonts.jost(
-                              fontSize: 12.sp,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.w500,
                               color: const Color(0xFF888888),
                             ),
@@ -198,7 +197,7 @@ class ItemDetailsScreen extends StatelessWidget {
                             () => Text(
                               '\$${controller.totalPrice.toStringAsFixed(2)}',
                               style: GoogleFonts.jost(
-                                fontSize: 28.sp,
+                                fontSize: 24.sp,
                                 fontWeight: FontWeight.w900,
                                 color: const Color(0xFF195ABE),
                               ),
@@ -206,69 +205,78 @@ class ItemDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      SizedBox(width: 14.w),
 
                       // Action Buttons (Add to Cart & Order Now)
-                      Row(
-                        children: [
-                          // Add to Cart Outlined Button
-                          Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: controller.addToCart,
-                              borderRadius: BorderRadius.circular(14.r),
-                              child: Container(
-                                height: 48.h,
-                                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            // Add to Cart Outlined Button
+                            Expanded(
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: controller.addToCart,
                                   borderRadius: BorderRadius.circular(14.r),
-                                  border: Border.all(
-                                    color: const Color(0xFFCCCCCC),
-                                    width: 1.2,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    StaticString.addToCart,
-                                    style: GoogleFonts.jost(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color: const Color(0xFF555555),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10.w),
-
-                          // Order Now Filled Blue Button
-                          Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: controller.orderNow,
-                              borderRadius: BorderRadius.circular(14.r),
-                              child: Container(
-                                height: 48.h,
-                                padding: EdgeInsets.symmetric(horizontal: 22.w),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF195ABE),
-                                  borderRadius: BorderRadius.circular(14.r),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    StaticString.orderNow,
-                                    style: GoogleFonts.jost(
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.bold,
+                                  child: Container(
+                                    height: 48.h,
+                                    decoration: BoxDecoration(
                                       color: Colors.white,
+                                      borderRadius: BorderRadius.circular(14.r),
+                                      border: Border.all(
+                                        color: const Color(0xFFCCCCCC),
+                                        width: 1.2,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        StaticString.addToCart,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.jost(
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.bold,
+                                          color: const Color(0xFF555555),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 8.w),
+
+                            // Order Now Filled Blue Button
+                            Expanded(
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: controller.orderNow,
+                                  borderRadius: BorderRadius.circular(14.r),
+                                  child: Container(
+                                    height: 48.h,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF195ABE),
+                                      borderRadius: BorderRadius.circular(14.r),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        StaticString.orderNow,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.jost(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

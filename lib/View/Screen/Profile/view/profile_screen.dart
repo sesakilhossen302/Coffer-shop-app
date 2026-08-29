@@ -236,15 +236,7 @@ class ProfileScreen extends StatelessWidget {
                         _buildMenuItem(
                           iconPath: AppIcons.orderHistoryIconSvg,
                           title: StaticString.orderHistory,
-                          onTap: () {
-                            Get.snackbar(
-                              StaticString.orderHistory,
-                              'Opening Order History...',
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: const Color(0xFF195ABE),
-                              colorText: Colors.white,
-                            );
-                          },
+                          onTap: () => Get.toNamed(AppRoute.orderHistoryScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.supportIconSvg,

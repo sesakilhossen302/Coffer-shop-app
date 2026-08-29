@@ -18,6 +18,7 @@ import '../../View/Screen/Login/view/login_screen.dart';
 import '../../View/Screen/MakePayment/view/make_payment_screen.dart';
 import '../../View/Screen/MyCart/view/my_cart_screen.dart';
 import '../../View/Screen/Notification/view/notification_screen.dart';
+import '../../View/Screen/OrderHistory/view/order_history_screen.dart';
 import '../../View/Screen/OrderStatus/view/order_received_screen.dart';
 import '../../View/Screen/OrderSummary/view/order_summary_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
@@ -61,6 +62,7 @@ class AppRoute {
   static const String editProfileScreen = '/edit-profile';
   static const String myWalletScreen = '/my-wallet';
   static const String myFavoriteScreen = '/my-favorite';
+  static const String orderHistoryScreen = '/order-history';
 
   static List<GetPage> routes = [
     GetPage(
@@ -182,6 +184,10 @@ class AppRoute {
     GetPage(
       name: myFavoriteScreen,
       page: () => const MyFavoriteScreen(),
+    ),
+    GetPage(
+      name: orderHistoryScreen,
+      page: () => const OrderHistoryScreen(),
     ),
   ];
 }

@@ -1,30 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../Utils/AppIcons/app_icons.dart';
 import '../model/gift_card_model.dart';
 import '../model/reward_model.dart';
 
 class RewardsController extends GetxController {
   final RxInt userPoints = 50.obs;
-  final int maxPoints = 600;
+  final int targetPoints = 600;
 
-  int get remainingPoints => (maxPoints - userPoints.value).clamp(0, 9999);
-  double get progressPercentage => (userPoints.value / maxPoints).clamp(0.0, 1.0);
+  final RxInt selectedRewardTab = 0.obs;
 
   final RxList<RewardModel> availableRewards = <RewardModel>[
     RewardModel(
-      id: '1',
+      id: 'r1',
       title: 'COFFECITO',
       requiredPoints: 50,
       imageUrl: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80',
       hasRedeemBadge: true,
+      isEarned: true,
     ),
     RewardModel(
-      id: '2',
+      id: 'r2',
       title: 'Galleta gratis',
       requiredPoints: 750,
       imageUrl: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&q=80',
       hasRedeemBadge: false,
+    ),
+    RewardModel(
+      id: 'r3',
+      title: 'Café gratis',
+      requiredPoints: 600,
+      imageUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&q=80',
+      hasRedeemBadge: false,
+      isEarned: true,
+    ),
+    RewardModel(
+      id: 'r4',
+      title: 'Café gratis',
+      requiredPoints: 600,
+      imageUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&q=80',
+      hasRedeemBadge: false,
+      isRedeemed: true,
     ),
   ].obs;
 
@@ -33,24 +48,32 @@ class RewardsController extends GetxController {
       id: 'g1',
       title: 'COFFECITO',
       amountText: '400MXN',
-      cardColor: const Color(0xFF1E90FF),
-      svgPath: AppIcons.rewardIcon14Svg,
+      cardColor: const Color(0xFF195ABE),
+      svgPath: 'assets/icons/ICON (14).svg',
     ),
     GiftCardModel(
       id: 'g2',
-      title: 'COFFECITO',
+      title: '800MXN',
       amountText: '800MXN',
       cardColor: const Color(0xFF1557BA),
-      svgPath: AppIcons.giftCard800MXNSvg,
+      svgPath: 'assets/icons/800MXN-Icons.svg',
     ),
   ].obs;
+
+  int get maxPoints => targetPoints;
+  int get remainingPoints => (targetPoints - userPoints.value).clamp(0, targetPoints);
+  double get progressPercentage => (userPoints.value / targetPoints).clamp(0.0, 1.0);
+
+  void selectRewardTab(int index) {
+    selectedRewardTab.value = index;
+  }
 
   void redeemReward(RewardModel reward) {
     if (userPoints.value >= reward.requiredPoints) {
       userPoints.value -= reward.requiredPoints;
       Get.snackbar(
         'Reward Redeemed!',
-        'You successfully redeemed ${reward.title} for ${reward.requiredPoints} pts.',
+        'You redeemed ${reward.title} for ${reward.requiredPoints} pts.',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color(0xFF195ABE),
         colorText: Colors.white,
@@ -58,7 +81,7 @@ class RewardsController extends GetxController {
       );
     } else {
       Get.snackbar(
-        'Not Enough Points',
+        'Insufficient Points',
         'You need ${reward.requiredPoints - userPoints.value} more points to redeem this reward.',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color(0xFFE53935),
@@ -70,8 +93,8 @@ class RewardsController extends GetxController {
 
   void purchaseGiftCard(GiftCardModel card) {
     Get.snackbar(
-      'Gift Card Selected',
-      'Selected ${card.amountText} Gift Card.',
+      'Gift Card Purchased',
+      'You purchased ${card.amountText} gift card.',
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: const Color(0xFF195ABE),
       colorText: Colors.white,

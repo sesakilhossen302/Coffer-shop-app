@@ -229,6 +229,13 @@ class StaticString {
   static const String montejoAddress = 'Montejo Promenade #220';
   static const String montejoPhone = '+1664456285966';
 
+  // Branch Search Location Strings
+  static const String allShopsAtLocation = 'All shops at this location';
+  static const String closedText = 'Closed';
+  static const String openText = 'Open';
+  static const String orderNowBtn = 'Order now';
+  static const String starbucks = 'Starbucks';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

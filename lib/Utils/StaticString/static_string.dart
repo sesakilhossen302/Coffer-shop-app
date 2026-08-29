@@ -335,6 +335,18 @@ class StaticString {
   static const String sentCodeToEmailSub = "We've Sent a Code to exa...@email.com";
   static const String deleteBtn = 'Delete';
 
+  // Support Screen Strings
+  static const String supportTitle = 'Support';
+  static const String subjectLabel = 'Subject';
+  static const String writeYourSubjectHint = 'Write Your Subject';
+  static const String feedbackLabel = 'Feedback';
+  static const String writeYourFeedbackHint = 'Write Your Feedback Here';
+  static const String submitBtn = 'Submit';
+  static const String supportMessageSent = 'Support Message Sent';
+  static const String messageSentSuccessMsg =
+      'Your message has been sent successfully. We will get back to you soon.';
+  static const String gotItBtn = 'Got it';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

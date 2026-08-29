@@ -20,6 +20,7 @@ import '../../View/Screen/Notification/view/notification_screen.dart';
 import '../../View/Screen/OrderStatus/view/order_received_screen.dart';
 import '../../View/Screen/OrderSummary/view/order_summary_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
+import '../../View/Screen/Profile/view/profile_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_details_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_redeemed_screen.dart';
 import '../../View/Screen/Rewards/view/available_rewards_screen.dart';
@@ -53,6 +54,7 @@ class AppRoute {
   static const String branchSearchLocationScreen = '/branch-search-location';
   static const String shopDetailsScreen = '/shop-details';
   static const String mapOptionsScreen = '/map-options';
+  static const String profileScreen = '/profile';
 
   static List<GetPage> routes = [
     GetPage(
@@ -158,6 +160,10 @@ class AppRoute {
     GetPage(
       name: mapOptionsScreen,
       page: () => const MapOptionsScreen(),
+    ),
+    GetPage(
+      name: profileScreen,
+      page: () => const ProfileScreen(),
     ),
   ];
 }

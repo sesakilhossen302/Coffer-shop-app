@@ -12,6 +12,7 @@ import '../../../../helper/network_img/custom_netwrok_image.dart';
 import '../../../Widgegt/navBar/nav_bar.dart';
 import '../../Branches/view/branches_screen.dart';
 import '../../Order/view/order_screen.dart';
+import '../../Profile/view/profile_screen.dart';
 import '../../Rewards/view/rewards_screen.dart';
 import '../controller/home_controller.dart';
 import '../model/offer_model.dart';
@@ -39,6 +40,9 @@ class HomeScreen extends StatelessWidget {
               }
               if (controller.selectedNavIndex.value == 3) {
                 return const BranchesScreen();
+              }
+              if (controller.selectedNavIndex.value == 4) {
+                return const ProfileScreen();
               }
               return _buildHomeContent(controller);
             }),

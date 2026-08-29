@@ -28,19 +28,27 @@ class MyCartScreen extends StatelessWidget {
               color: Color(0xFF1E90FF),
             ),
             padding: EdgeInsets.only(
-              left: 16.w,
+              left: 12.w,
               right: 16.w,
-              top: statusBarHeight + 14.h,
-              bottom: 20.h,
+              top: statusBarHeight + 10.h,
+              bottom: 16.h,
             ),
             child: Row(
               children: [
-                GestureDetector(
-                  onTap: () => Get.back(),
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white,
-                    size: 20,
+                // Responsive Back Button with Larger Touch Area
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => Get.back(),
+                    borderRadius: BorderRadius.circular(20.r),
+                    child: Padding(
+                      padding: EdgeInsets.all(8.r),
+                      child: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -54,7 +62,7 @@ class MyCartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 20.w), // Spacer for centering
+                SizedBox(width: 36.w), // Spacer matching back button size for centering
               ],
             ),
           ),
@@ -83,17 +91,15 @@ class MyCartScreen extends StatelessWidget {
           SizedBox(height: 16.h),
 
           // Cart Items List
-          Obx(
-            () => ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: controller.cartItems.length,
-              separatorBuilder: (context, index) => SizedBox(height: 14.h),
-              itemBuilder: (context, index) {
-                final item = controller.cartItems[index];
-                return _buildCartItemCard(item, index, controller);
-              },
-            ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.cartItems.length,
+            separatorBuilder: (context, index) => SizedBox(height: 14.h),
+            itemBuilder: (context, index) {
+              final item = controller.cartItems[index];
+              return _buildCartItemCard(item, index, controller);
+            },
           ),
 
           SizedBox(height: 20.h),
@@ -168,49 +174,47 @@ class MyCartScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          Obx(
-            () => Column(
-              children: [
-                _buildSummaryRow(
-                  StaticString.subtotal,
-                  '\$${controller.subtotal.toStringAsFixed(2)}',
-                ),
-                SizedBox(height: 8.h),
-                _buildSummaryRow(
-                  StaticString.taxes,
-                  '\$${controller.taxes.value.toStringAsFixed(2)}',
-                ),
-                SizedBox(height: 8.h),
-                _buildSummaryRow(
-                  StaticString.discounts,
-                  '\$${controller.discountAmount.value.toStringAsFixed(2)}',
-                ),
-                SizedBox(height: 12.h),
-                const Divider(color: Color(0xFFE5E5E5), thickness: 1),
-                SizedBox(height: 8.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      StaticString.total,
-                      style: GoogleFonts.jost(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF222222),
-                      ),
+          Column(
+            children: [
+              _buildSummaryRow(
+                StaticString.subtotal,
+                '\$${controller.subtotal.toStringAsFixed(2)}',
+              ),
+              SizedBox(height: 8.h),
+              _buildSummaryRow(
+                StaticString.taxes,
+                '\$${controller.taxes.value.toStringAsFixed(2)}',
+              ),
+              SizedBox(height: 8.h),
+              _buildSummaryRow(
+                StaticString.discounts,
+                '\$${controller.discountAmount.value.toStringAsFixed(2)}',
+              ),
+              SizedBox(height: 12.h),
+              const Divider(color: Color(0xFFE5E5E5), thickness: 1),
+              SizedBox(height: 8.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    StaticString.total,
+                    style: GoogleFonts.jost(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF222222),
                     ),
-                    Text(
-                      '\$${controller.grandTotal.toStringAsFixed(2)}',
-                      style: GoogleFonts.jost(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w900,
-                        color: const Color(0xFF195ABE),
-                      ),
+                  ),
+                  Text(
+                    '\$${controller.grandTotal.toStringAsFixed(2)}',
+                    style: GoogleFonts.jost(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w900,
+                      color: const Color(0xFF195ABE),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
 
           SizedBox(height: 28.h),
@@ -225,33 +229,31 @@ class MyCartScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          Obx(
-            () => Column(
-              children: [
-                _buildPaymentOption(
-                  StaticString.cash,
-                  controller.selectedPaymentMethod.value == StaticString.cash,
-                  () => controller.selectPaymentMethod(StaticString.cash),
-                ),
-                _buildPaymentOption(
-                  StaticString.cardMasked,
-                  controller.selectedPaymentMethod.value == StaticString.cardMasked,
-                  () => controller.selectPaymentMethod(StaticString.cardMasked),
-                ),
-                _buildPaymentOption(
-                  StaticString.applePay,
-                  controller.selectedPaymentMethod.value == StaticString.applePay,
-                  () => controller.selectPaymentMethod(StaticString.applePay),
-                  isDisabled: true,
-                ),
-                _buildPaymentOption(
-                  StaticString.googlePay,
-                  controller.selectedPaymentMethod.value == StaticString.googlePay,
-                  () => controller.selectPaymentMethod(StaticString.googlePay),
-                  isDisabled: true,
-                ),
-              ],
-            ),
+          Column(
+            children: [
+              _buildPaymentOption(
+                StaticString.cash,
+                controller.selectedPaymentMethod.value == StaticString.cash,
+                () => controller.selectPaymentMethod(StaticString.cash),
+              ),
+              _buildPaymentOption(
+                StaticString.cardMasked,
+                controller.selectedPaymentMethod.value == StaticString.cardMasked,
+                () => controller.selectPaymentMethod(StaticString.cardMasked),
+              ),
+              _buildPaymentOption(
+                StaticString.applePay,
+                controller.selectedPaymentMethod.value == StaticString.applePay,
+                () => controller.selectPaymentMethod(StaticString.applePay),
+                isDisabled: true,
+              ),
+              _buildPaymentOption(
+                StaticString.googlePay,
+                controller.selectedPaymentMethod.value == StaticString.googlePay,
+                () => controller.selectPaymentMethod(StaticString.googlePay),
+                isDisabled: true,
+              ),
+            ],
           ),
 
           SizedBox(height: 12.h),

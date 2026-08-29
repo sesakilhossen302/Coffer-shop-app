@@ -299,13 +299,26 @@ class StaticString {
   static const String addFavoriteItemDesc = 'Add  your favorite item to see them here.';
   static const String exploreOrder = 'Explore order';
 
-  // Order History Strings
+  // Order History & Details Strings
   static const String orderHistoryTitle = 'Order History';
+  static const String orderDetailsTitle = 'Order Details';
   static const String upcomingTab = 'Upcoming';
   static const String completedTab = 'Completed';
   static const String pendingStatus = 'Pending';
   static const String completedStatus = 'Completed';
   static const String viewDetailsBtn = 'View Details';
+  static const String earnedReward = 'Earned Reward';
+  static const String fiftyPoints = '50 points';
+  static const String totalReward = 'Total Reward';
+  static const String orderInformation = 'Order Information';
+  static const String statusLabel = 'Status';
+  static const String idLabel = 'ID';
+  static const String dateLabel = 'Date';
+  static const String locationLabel = 'Location';
+  static const String totalProductPrice = 'Total Product Price';
+  static const String sampleLocation = 'Sonargaon Road · 2.6 km';
+  static const String sampleDate = 'May 13, 2026';
+  static const String qtyPrefix = 'Qty: ';
 
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';

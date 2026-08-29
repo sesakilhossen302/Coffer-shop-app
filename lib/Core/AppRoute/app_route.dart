@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../../View/Screen/Home/view/home_screen.dart';
 import '../../View/Screen/LoadingScreen/loading_screen.dart';
 import '../../View/Screen/Login/view/login_screen.dart';
+import '../../View/Screen/MyCart/view/my_cart_screen.dart';
 import '../../View/Screen/Notification/view/notification_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
@@ -15,6 +16,7 @@ class AppRoute {
   static const String otpScreen = '/otp';
   static const String homeScreen = '/home';
   static const String notificationScreen = '/notification';
+  static const String myCartScreen = '/my-cart';
 
   static List<GetPage> routes = [
     GetPage(
@@ -50,6 +52,11 @@ class AppRoute {
     GetPage(
       name: notificationScreen,
       page: () => const NotificationScreen(),
+      transition: Transition.rightToLeftWithFade,
+    ),
+    GetPage(
+      name: myCartScreen,
+      page: () => const MyCartScreen(),
       transition: Transition.rightToLeftWithFade,
     ),
   ];

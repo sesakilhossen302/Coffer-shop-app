@@ -125,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // Cart Icon Button
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => Get.toNamed(AppRoute.myCartScreen),
                     child: Container(
                       padding: EdgeInsets.all(4.r),
                       child: SvgPicture.asset(

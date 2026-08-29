@@ -1,97 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Utils/StaticString/static_string.dart';
-import '../../Widgegt/custom_loader/custom_loader.dart';
-import '../../Widgegt/custom_text/custom_text.dart';
+import '../../Widgegt/CoffecitoMascot/coffecito_mascot.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // Splash screen timer delay
-    Future.delayed(const Duration(seconds: 3), () {
-      // Route to next screen after splash
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
-      body: Stack(
-        children: [
-          // Background Gradient Overlay
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFF1F1F1F),
-                  AppColors.secondary,
-                ],
+      backgroundColor: AppColors.splashBackground,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+
+              // Hero Running Coffecito Mascot Illustration
+              Center(
+                child: CoffecitoMascot(
+                  width: 260.w,
+                  height: 260.h,
+                  isMini: false,
+                ),
               ),
-            ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Animated Coffee Icon Logo Container
-                Container(
-                  padding: EdgeInsets.all(24.r),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.15),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.primary.withValues(alpha: 0.4),
-                      width: 2,
+
+              SizedBox(height: 36.h),
+
+              // Headline Text "READY TO BOOST YOUR DAY?"
+              Text(
+                StaticString.readyToBoost,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.sora(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  height: 1.25,
+                  letterSpacing: 0.5,
+                ),
+              ),
+
+              const Spacer(flex: 3),
+
+              // "Start Now" Bottom Button
+              SizedBox(
+                width: double.infinity,
+                height: 56.h,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Navigate to Home or Main App Flow
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.startNowButton,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
                   ),
-                  child: Icon(
-                    Icons.coffee_rounded,
-                    size: 72.sp,
-                    color: AppColors.primary,
+                  child: Text(
+                    StaticString.startNow,
+                    style: GoogleFonts.sora(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                SizedBox(height: 24.h),
+              ),
 
-                // App Title
-                const CustomText(
-                  text: StaticString.appTitle,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textWhite,
-                ),
-                SizedBox(height: 8.h),
-
-                // Tagline
-                CustomText(
-                  text: 'splash_tagline',
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                  color: AppColors.textSecondary,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 48.h),
-
-                // Custom Loading Indicator
-                const CustomLoader(
-                  color: AppColors.primary,
-                  size: 32,
-                ),
-              ],
-            ),
+              SizedBox(height: 24.h),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

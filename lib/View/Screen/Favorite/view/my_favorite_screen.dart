@@ -514,7 +514,15 @@ class MyFavoriteScreen extends StatelessWidget {
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: () => Get.toNamed(AppRoute.itemDetailsScreen),
+                  onTap: () => Get.toNamed(
+                    AppRoute.orderSummaryScreen,
+                    arguments: {
+                      'title': item.title,
+                      'customization': item.description,
+                      'price': item.price,
+                      'imageUrl': item.imageUrl,
+                    },
+                  ),
                   borderRadius: BorderRadius.circular(10.r),
                   child: Container(
                     width: 104.w,

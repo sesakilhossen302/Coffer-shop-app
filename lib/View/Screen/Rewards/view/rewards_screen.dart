@@ -393,7 +393,7 @@ class RewardsScreen extends StatelessWidget {
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () => Get.toNamed(AppRoute.addExistingGiftCardScreen),
                             borderRadius: BorderRadius.circular(14.r),
                             child: Container(
                               height: 46.h,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../Home/model/product_model.dart';
 import '../model/category_model.dart';
 
@@ -9,10 +10,10 @@ class OrderController extends GetxController {
   final RxInt selectedCategoryIndex = 0.obs;
 
   final RxList<CategoryModel> categories = <CategoryModel>[
-    CategoryModel(id: '1', name: 'Hot drinks', icon: Icons.local_cafe_outlined),
-    CategoryModel(id: '2', name: 'Cold drinks', icon: Icons.local_drink_outlined),
-    CategoryModel(id: '3', name: 'Bakery', icon: Icons.bakery_dining_outlined),
-    CategoryModel(id: '4', name: 'Snacks', icon: Icons.cookie_outlined),
+    CategoryModel(id: '1', name: 'Hot drinks', icon: AppIcons.hotDrinksIcon),
+    CategoryModel(id: '2', name: 'Cold drinks', icon: AppIcons.coldDrinksIcon),
+    CategoryModel(id: '3', name: 'Bakery', icon: AppIcons.bakeryIcon),
+    CategoryModel(id: '4', name: 'Snacks', icon: AppIcons.snacksIcon),
   ].obs;
 
   final RxMap<int, List<ProductModel>> categoryProducts = <int, List<ProductModel>>{

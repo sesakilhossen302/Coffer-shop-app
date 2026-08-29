@@ -18,6 +18,12 @@ class AppIcons {
   static const String branchesNavIcon = '$basePath/Branches-Map-NavBar-Icons.svg';
   static const String profileNavIcon = '$basePath/Profile-NavBar-Icons.svg';
 
+  // Order Category SVG Icons
+  static const String hotDrinksIcon = '$basePath/Hot drinks-icons.svg';
+  static const String coldDrinksIcon = '$basePath/Cold drinks-icons.svg';
+  static const String bakeryIcon = '$basePath/Bakery-Icons.svg';
+  static const String snacksIcon = '$basePath/Snacks-Icons.svg';
+
   // Additional App Icons
   static const String coffee = '$basePath/coffee.png';
   static const String home = '$basePath/home.png';

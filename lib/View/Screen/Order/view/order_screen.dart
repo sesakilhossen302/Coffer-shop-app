@@ -272,6 +272,8 @@ class OrderScreen extends StatelessWidget {
     required bool isSelected,
     required VoidCallback onTap,
   }) {
+    final Color iconColor = isSelected ? const Color(0xFF1E90FF) : Colors.white;
+
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -292,10 +294,11 @@ class OrderScreen extends StatelessWidget {
                   : null,
             ),
             child: Center(
-              child: Icon(
+              child: SvgPicture.asset(
                 category.icon,
-                size: 28.sp,
-                color: isSelected ? const Color(0xFF1E90FF) : Colors.white,
+                width: 28.w,
+                height: 28.h,
+                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
               ),
             ),
           ),

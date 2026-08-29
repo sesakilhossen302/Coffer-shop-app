@@ -45,6 +45,25 @@ class StaticString {
   static const String todaysSpecial = "Today's Special";
   static const String caramelLatteOffer = 'Enjoy 20% off our Caramel Latte — available...';
 
+  // Cart Strings
+  static const String myCart = 'My Cart';
+  static const String enterDiscountCode = 'Enter discount code';
+  static const String apply = 'Apply';
+  static const String paymentSummary = 'Payment Summary';
+  static const String subtotal = 'Subtotal';
+  static const String taxes = 'Taxes';
+  static const String discounts = 'Discounts';
+  static const String total = 'Total';
+  static const String paymentMethod = 'Payment Method';
+  static const String cash = 'Cash';
+  static const String cardMasked = 'Card *** **** 4529';
+  static const String applePay = 'Apple Pay';
+  static const String googlePay = 'Google Pay';
+  static const String addPaymentMethod = '+ Add payment method';
+  static const String placeOrder = 'Place order';
+  static const String yourCartIsEmpty = 'Your cart is empty';
+  static const String looksLikeEmptyCart = "Looks like you haven't added anything to your cart yet.";
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

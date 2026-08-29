@@ -619,44 +619,35 @@ class RewardsScreen extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
-            // Top Title "COFFECITO"
-            Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                'COFFECITO',
-                style: GoogleFonts.jost(
-                  fontSize: 26.sp,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
-                  letterSpacing: 2.0,
-                ),
-              ),
-            ),
-
-            // Vector Graphic Illustration in Center
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.only(top: 24.h, left: 10.w),
-                child: SvgPicture.asset(
-                  card.svgPath,
-                  height: 90.h,
-                  fit: BoxFit.contain,
-                ),
+            // SVG Illustration (Positioned on the left side filling card cleanly)
+            Positioned(
+              left: 16.w,
+              top: 14.h,
+              bottom: 14.h,
+              right: 90.w,
+              child: SvgPicture.asset(
+                card.svgPath,
+                fit: BoxFit.contain,
+                alignment: Alignment.centerLeft,
               ),
             ),
 
             // Bottom Right Gold Coin & Amount Pill (e.g. 🪙 400MXN / 800MXN)
-            Align(
-              alignment: Alignment.bottomRight,
+            Positioned(
+              bottom: 16.h,
+              right: 16.w,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 7.h),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.15),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20.r),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.3),
+                    width: 1,
+                  ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

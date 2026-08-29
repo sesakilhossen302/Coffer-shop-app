@@ -4,17 +4,62 @@ import '../model/branch_model.dart';
 
 class BranchesController extends GetxController {
   TextEditingController? _searchController;
-  final RxString searchQuery = ''.obs;
+  final RxString searchQuery = 'Montejo Promenade #220'.obs;
 
   TextEditingController get searchController {
     try {
       _searchController ??= TextEditingController();
-      _searchController!.text;
+      if (_searchController!.text.isEmpty) {
+        _searchController!.text = searchQuery.value;
+      }
     } catch (_) {
-      _searchController = TextEditingController();
+      _searchController = TextEditingController(text: searchQuery.value);
     }
     return _searchController!;
   }
+
+  final RxList<BranchModel> shopsAtLocation = <BranchModel>[
+    BranchModel(
+      id: 's1',
+      name: 'Starbucks',
+      address: 'Montejo Promenade #220',
+      phone: '+1664456285966',
+      mapImageUrl: '',
+      logoUrl: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=150&q=80',
+      isOpen: false,
+      isFavorite: false,
+    ),
+    BranchModel(
+      id: 's2',
+      name: 'Starbucks',
+      address: 'Montejo Promenade #220',
+      phone: '+1664456285966',
+      mapImageUrl: '',
+      logoUrl: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=150&q=80',
+      isOpen: true,
+      isFavorite: false,
+    ),
+    BranchModel(
+      id: 's3',
+      name: 'Starbucks',
+      address: 'Montejo Promenade #220',
+      phone: '+1664456285966',
+      mapImageUrl: '',
+      logoUrl: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=150&q=80',
+      isOpen: true,
+      isFavorite: false,
+    ),
+    BranchModel(
+      id: 's4',
+      name: 'Starbucks',
+      address: 'Montejo Promenade #220',
+      phone: '+1664456285966',
+      mapImageUrl: '',
+      logoUrl: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=150&q=80',
+      isOpen: true,
+      isFavorite: false,
+    ),
+  ].obs;
 
   final RxList<BranchModel> branches = <BranchModel>[
     BranchModel(
@@ -37,16 +82,6 @@ class BranchesController extends GetxController {
       canPayInCash: 'Yes',
       rewardsExpire: 'No',
     ),
-    BranchModel(
-      id: 'b3',
-      name: 'Coffecito Altabrisa',
-      address: 'Altabrisa Mall #104',
-      phone: '+1664456285988',
-      mapImageUrl:
-          'https://maps.googleapis.com/maps/api/staticmap?center=21.0156,-89.5825&zoom=14&size=600x300&sensor=false',
-      canPayInCash: 'Yes',
-      rewardsExpire: 'No',
-    ),
   ].obs;
 
   List<BranchModel> get filteredBranches {
@@ -58,6 +93,19 @@ class BranchesController extends GetxController {
       return b.name.toLowerCase().contains(query) ||
           b.address.toLowerCase().contains(query);
     }).toList();
+  }
+
+  void toggleFavorite(BranchModel shop) {
+    shop.isFavorite = !shop.isFavorite;
+    shopsAtLocation.refresh();
+    Get.snackbar(
+      shop.isFavorite ? 'Added to Favorites' : 'Removed from Favorites',
+      '${shop.name} has been ${shop.isFavorite ? 'added to' : 'removed from'} your favorites.',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: const Color(0xFF195ABE),
+      colorText: Colors.white,
+      margin: const EdgeInsets.all(16),
+    );
   }
 
   void openDirections(BranchModel branch) {

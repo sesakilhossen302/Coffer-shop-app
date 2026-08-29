@@ -56,4 +56,14 @@ class AppIcons {
   // Favorite & Map SVG Icons
   static const String favoriteIconSvg = '$basePath/Favorite.svg';
   static const String worldMapIconSvg = '$basePath/noto_world-map.svg';
+
+  // Profile Module SVG Icons
+  static const String editProfileIconSvg = '$basePath/Edit Profile-icons.svg';
+  static const String myWalletIconSvg = '$basePath/My Wallet.svg';
+  static const String orderHistoryIconSvg = '$basePath/Order History-icons.svg';
+  static const String supportIconSvg = '$basePath/Support.svg';
+  static const String termsIconSvg = '$basePath/Terms & Conditions-Icons.svg';
+  static const String privacyIconSvg = '$basePath/Privacy Policy-Icons.svg';
+  static const String logoutIconSvg = '$basePath/logout.svg';
+  static const String deleteAccountIconSvg = '$basePath/Delete Account-Icons.svg';
 }

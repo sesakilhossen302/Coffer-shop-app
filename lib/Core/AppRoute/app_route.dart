@@ -9,6 +9,7 @@ import '../../View/Screen/Notification/view/notification_screen.dart';
 import '../../View/Screen/OrderStatus/view/order_received_screen.dart';
 import '../../View/Screen/OrderSummary/view/order_summary_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
+import '../../View/Screen/RewardDetails/view/reward_details_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
 
@@ -25,6 +26,7 @@ class AppRoute {
   static const String orderSummaryScreen = '/order-summary';
   static const String makePaymentScreen = '/make-payment';
   static const String orderReceivedScreen = '/order-received';
+  static const String rewardDetailsScreen = '/reward-details';
 
   static List<GetPage> routes = [
     GetPage(
@@ -74,6 +76,10 @@ class AppRoute {
     GetPage(
       name: orderReceivedScreen,
       page: () => const OrderReceivedScreen(),
+    ),
+    GetPage(
+      name: rewardDetailsScreen,
+      page: () => const RewardDetailsScreen(),
     ),
   ];
 }

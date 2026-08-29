@@ -482,7 +482,7 @@ class RewardsScreen extends StatelessWidget {
   // ---------- AVAILABLE REWARD CARD WIDGET ----------
   Widget _buildRewardCard(RewardModel reward, RewardsController controller) {
     return GestureDetector(
-      onTap: () => controller.redeemReward(reward),
+      onTap: () => Get.toNamed(AppRoute.rewardDetailsScreen, arguments: reward),
       child: SizedBox(
         width: 145.w,
         child: Column(

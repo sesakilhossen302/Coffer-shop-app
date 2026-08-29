@@ -70,20 +70,19 @@ class OrderHistoryScreen extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          // 2-Tab Segmented Switcher (Upcoming / Completed)
+          // Pixel-Perfect 2-Tab Segmented Switcher (Upcoming / Completed)
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Container(
-              height: 48.h,
+              height: 46.h,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12.r),
                 border: Border.all(
                   color: const Color(0xFFE5E9F0),
-                  width: 1,
+                  width: 1.2,
                 ),
               ),
-              padding: EdgeInsets.all(3.r),
               child: Obx(
                 () => Row(
                   children: [
@@ -91,11 +90,13 @@ class OrderHistoryScreen extends StatelessWidget {
                       controller: controller,
                       index: 0,
                       title: StaticString.upcomingTab,
+                      isLeft: true,
                     ),
                     _buildTabButton(
                       controller: controller,
                       index: 1,
                       title: StaticString.completedTab,
+                      isLeft: false,
                     ),
                   ],
                 ),
@@ -145,24 +146,29 @@ class OrderHistoryScreen extends StatelessWidget {
     required OrderHistoryController controller,
     required int index,
     required String title,
+    required bool isLeft,
   }) {
     final bool isSelected = controller.selectedTab.value == index;
 
     return Expanded(
       child: GestureDetector(
         onTap: () => controller.selectedTab.value = index,
-        child: Container(
+        behavior: HitTestBehavior.opaque,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
           decoration: BoxDecoration(
             color: isSelected ? const Color(0xFF1E90FF) : Colors.transparent,
-            borderRadius: BorderRadius.circular(9.r),
+            borderRadius: isLeft
+                ? BorderRadius.horizontal(left: Radius.circular(10.r))
+                : BorderRadius.horizontal(right: Radius.circular(10.r)),
           ),
           child: Center(
             child: Text(
               title,
               style: GoogleFonts.jost(
                 fontSize: 14.sp,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.white : const Color(0xFF777777),
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                color: isSelected ? Colors.white : const Color(0xFF999999),
               ),
             ),
           ),

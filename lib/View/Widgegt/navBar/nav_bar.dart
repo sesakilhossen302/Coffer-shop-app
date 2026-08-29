@@ -17,26 +17,27 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          top: BorderSide(
-            color: const Color(0xFFE5E5E5),
-            width: 1.h,
-          ),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
+      color: Colors.white,
       child: SafeArea(
         top: false,
         child: Container(
-          height: 64.h,
+          height: 60.h,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(
+                color: const Color(0xFFE5E5E5),
+                width: 1.h,
+              ),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.03),
+                blurRadius: 8,
+                offset: const Offset(0, -2),
+              ),
+            ],
+          ),
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -68,16 +69,16 @@ class CustomNavBar extends StatelessWidget {
           children: [
             SvgPicture.asset(
               svgPath,
-              width: 25.w,
-              height: 25.h,
+              width: 24.w,
+              height: 24.h,
               colorFilter: ColorFilter.mode(itemColor, BlendMode.srcIn),
             ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 4.h),
             Text(
               label,
               textAlign: TextAlign.center,
               style: GoogleFonts.jost(
-                fontSize: 12.sp,
+                fontSize: 11.sp,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 color: itemColor,
                 height: 1.0,

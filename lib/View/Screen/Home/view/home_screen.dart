@@ -22,58 +22,55 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF7F9FC),
-      body: SafeArea(
-        top: false,
-        child: Column(
-          children: [
-            // Expanded Scrollable Content
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Top Blue Header Section
-                    _buildTopHeader(controller),
+      body: Column(
+        children: [
+          // Expanded Scrollable Content
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Top Blue Header Section
+                  _buildTopHeader(controller),
 
-                    SizedBox(height: 24.h),
+                  SizedBox(height: 24.h),
 
-                    // Main Body Content
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // "Sip more,Win more!" Loyalty Points Section
-                          _buildPointsSection(controller),
+                  // Main Body Content
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // "Sip more,Win more!" Loyalty Points Section
+                        _buildPointsSection(controller),
 
-                          SizedBox(height: 24.h),
+                        SizedBox(height: 24.h),
 
-                          // "Offers" Banner Section
-                          _buildOffersSection(controller),
+                        // "Offers" Banner Section
+                        _buildOffersSection(controller),
 
-                          SizedBox(height: 24.h),
+                        SizedBox(height: 24.h),
 
-                          // "Order again" Products Section
-                          _buildOrderAgainSection(controller),
+                        // "Order again" Products Section
+                        _buildOrderAgainSection(controller),
 
-                          SizedBox(height: 24.h),
-                        ],
-                      ),
+                        SizedBox(height: 24.h),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
+          ),
 
-            // Custom Bottom Navigation Bar
-            Obx(
-              () => CustomNavBar(
-                currentIndex: controller.selectedNavIndex.value,
-                onTap: controller.changeNavIndex,
-              ),
+          // Custom Bottom Navigation Bar
+          Obx(
+            () => CustomNavBar(
+              currentIndex: controller.selectedNavIndex.value,
+              onTap: controller.changeNavIndex,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

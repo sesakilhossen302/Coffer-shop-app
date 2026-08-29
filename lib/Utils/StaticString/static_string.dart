@@ -347,6 +347,14 @@ class StaticString {
       'Your message has been sent successfully. We will get back to you soon.';
   static const String gotItBtn = 'Got it';
 
+  // Delete Account & Logout Dialog Strings
+  static const String deleteAccountSuccessful = 'Delete Account Successful';
+  static const String accountPermanentlyDeletedMsg = 'Your account has been permanently deleted.';
+  static const String logoutTitleExclamation = 'Log Out!';
+  static const String doYouWantToLogoutMsg = 'Do you want to log out of your profile?';
+  static const String logoutSuccessfulTitle = 'Log Out Successful';
+  static const String loggedOutSuccessfullyMsg = 'You have been logged out successfully.';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../Core/AppRoute/app_route.dart';
 import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/StaticString/static_string.dart';
-import '../../../Widgegt/navBar/nav_bar.dart';
 import '../controller/profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -277,7 +276,7 @@ class ProfileScreen extends StatelessWidget {
                           iconColor: const Color(0xFFFF3B30),
                           arrowColor: const Color(0xFF888888),
                           showDivider: false,
-                          onTap: () => controller.deleteAccount(),
+                          onTap: () => Get.toNamed(AppRoute.deleteAccountScreen),
                         ),
                       ],
                     ),
@@ -287,14 +286,6 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-
-          // Custom Bottom Navigation Bar (Tab 4 Active)
-          CustomNavBar(
-            currentIndex: 4,
-            onTap: (index) {
-              if (index == 0) Get.offAllNamed(AppRoute.homeScreen);
-            },
           ),
         ],
       ),

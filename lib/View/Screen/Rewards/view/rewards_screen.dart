@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -127,10 +128,10 @@ class RewardsScreen extends StatelessWidget {
 
                 SizedBox(height: 18.h),
 
-                // Floating White Card showing User Points
+                // Floating White Card showing User Points (Matching Figma Screenshot)
                 Container(
                   width: double.infinity,
-                  height: 76.h,
+                  height: 78.h,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.r),
@@ -145,24 +146,9 @@ class RewardsScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Row(
                     children: [
-                      // Circular Gold Coin Ring Graphic
-                      Container(
-                        width: 46.w,
-                        height: 46.h,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xFFFFF9E6),
-                          border: Border.all(
-                            color: const Color(0xFFFFC107),
-                            width: 3,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '🪙',
-                            style: TextStyle(fontSize: 22.sp),
-                          ),
-                        ),
+                      // Circular Ring Progress Painter with 3D Gold Coin
+                      Obx(
+                        () => _buildCircularCoinRing(controller.progressPercentage),
                       ),
 
                       SizedBox(width: 16.w),
@@ -176,7 +162,7 @@ class RewardsScreen extends StatelessWidget {
                             Text(
                               '${controller.userPoints.value} ',
                               style: GoogleFonts.jost(
-                                fontSize: 32.sp,
+                                fontSize: 34.sp,
                                 fontWeight: FontWeight.w900,
                                 color: const Color(0xFF195ABE),
                               ),
@@ -184,7 +170,7 @@ class RewardsScreen extends StatelessWidget {
                             Text(
                               StaticString.pointsText,
                               style: GoogleFonts.jost(
-                                fontSize: 16.sp,
+                                fontSize: 17.sp,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFF195ABE),
                               ),
@@ -610,13 +596,16 @@ class RewardsScreen extends StatelessWidget {
 
             SizedBox(height: 8.h),
 
-            // Points Pill Badge (🪙 50 pts)
+            // Points Badge (Home-Page-Coin-img.png + 50 pts)
             Row(
               children: [
-                Text(
-                  '🪙 ',
-                  style: TextStyle(fontSize: 14.sp),
+                Image.asset(
+                  AppIcons.homePageCoinImg,
+                  width: 18.w,
+                  height: 18.h,
+                  fit: BoxFit.contain,
                 ),
+                SizedBox(width: 6.w),
                 Text(
                   '${reward.requiredPoints} pts',
                   style: GoogleFonts.jost(
@@ -693,43 +682,98 @@ class RewardsScreen extends StatelessWidget {
               ),
             ],
 
-            // Bottom Right Gold Coin & Amount Pill (e.g. 🪙 400MXN / 800MXN)
+            // Bottom Right Gold Coin & Amount Text (Home-Page-Coin-img.png + 400MXN/800MXN - matching user screenshot!)
             Positioned(
               bottom: 16.h,
-              right: 16.w,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 7.h),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(20.r),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.3),
-                    width: 1,
+              right: 20.w,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    AppIcons.homePageCoinImg,
+                    width: 24.w,
+                    height: 24.h,
+                    fit: BoxFit.contain,
                   ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '🪙 ',
-                      style: TextStyle(fontSize: 14.sp),
+                  SizedBox(width: 6.w),
+                  Text(
+                    card.amountText,
+                    style: GoogleFonts.jost(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
                     ),
-                    Text(
-                      card.amountText,
-                      style: GoogleFonts.jost(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  // ---------- CIRCULAR COIN PROGRESS RING WIDGET ----------
+  Widget _buildCircularCoinRing(double progress) {
+    return SizedBox(
+      width: 52.r,
+      height: 52.r,
+      child: CustomPaint(
+        painter: _CircularRingPainter(progress: progress),
+        child: Center(
+          child: Image.asset(
+            AppIcons.homePageCoinImg,
+            width: 32.w,
+            height: 32.h,
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ---------- CUSTOM CIRCULAR RING PAINTER ----------
+class _CircularRingPainter extends CustomPainter {
+  final double progress;
+
+  _CircularRingPainter({required this.progress});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final strokeWidth = 4.5;
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = (size.width - strokeWidth) / 2;
+
+    // Background Gray Ring Track
+    final bgPaint = Paint()
+      ..color = const Color(0xFFE2E6EC)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    canvas.drawCircle(center, radius, bgPaint);
+
+    // Yellow Progress Arc
+    final progressPaint = Paint()
+      ..color = const Color(0xFFFFB800)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    final sweepAngle = 2 * math.pi * progress.clamp(0.0, 1.0);
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -math.pi / 2, // Starts from top
+      sweepAngle,
+      false,
+      progressPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _CircularRingPainter oldDelegate) {
+    return oldDelegate.progress != progress;
   }
 }

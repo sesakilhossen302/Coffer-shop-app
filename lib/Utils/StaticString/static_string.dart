@@ -236,6 +236,26 @@ class StaticString {
   static const String orderNowBtn = 'Order now';
   static const String starbucks = 'Starbucks';
 
+  // Shop Details & Map Options Strings
+  static const String shopDetailsTitle = 'Shop Details';
+  static const String aboutShop = 'About Shop';
+  static const String workingHours = 'Working Hours';
+  static const String products = 'Products';
+  static const String restaurantWorkingHours = 'Restaurant Working Hours';
+  static const String monThuHours = 'Monday - Thursday';
+  static const String monThuTime = '8:00 AM – 9:00 PM';
+  static const String friHours = 'Friday';
+  static const String friTime = '9:00 AM – 10:00 PM';
+  static const String satSunHours = 'Saturday - Sunday';
+  static const String satSunTime = '9:00 AM – 8:00 PM';
+  static const String lastOrder = 'Last Order';
+  static const String availableItems = 'Available Items';
+  static const String orderCompleted = 'Order Completed';
+  static const String mapTitle = 'Map';
+  static const String openInPreferredMap = 'Open this location in your preferred map app.';
+  static const String openInGoogleMaps = 'Open in Google Maps';
+  static const String openInAppleMaps = 'Open in Apple Maps';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

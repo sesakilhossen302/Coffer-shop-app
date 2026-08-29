@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../Core/AppRoute/app_route.dart';
+import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/StaticString/static_string.dart';
 import '../controller/make_payment_controller.dart';
 
@@ -376,35 +378,34 @@ class MakePaymentScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 36.h),
+                  SizedBox(height: 32.h),
 
-                  // "or pay with" Divider
+                  // "or pay with" Left Title + Right Divider Line (Matching Figma Design)
                   Row(
                     children: [
-                      const Expanded(child: Divider(color: Color(0xFFE5E5E5))),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 12.w),
-                        child: Text(
-                          StaticString.orPayWith,
-                          style: GoogleFonts.jost(
-                            fontSize: 14.sp,
-                            color: const Color(0xFF1E90FF),
-                            fontWeight: FontWeight.w500,
-                          ),
+                      Text(
+                        StaticString.orPayWith,
+                        style: GoogleFonts.jost(
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFF1E90FF),
                         ),
                       ),
-                      const Expanded(child: Divider(color: Color(0xFFE5E5E5))),
+                      SizedBox(width: 14.w),
+                      const Expanded(
+                        child: Divider(color: Color(0xFFE8ECEF), thickness: 1.5),
+                      ),
                     ],
                   ),
 
                   SizedBox(height: 16.h),
 
-                  // Apple Pay & Google Pay Option Cards
+                  // Apple Pay & Google Pay SVG Option Cards (Matching Figma Design)
                   Row(
                     children: [
-                      _buildAlternativePaymentCard(' Pay'),
+                      _buildAlternativePaymentCard(AppIcons.applePayIcon),
                       SizedBox(width: 14.w),
-                      _buildAlternativePaymentCard('G Pay'),
+                      _buildAlternativePaymentCard(AppIcons.googlePayIcon),
                     ],
                   ),
 
@@ -418,23 +419,24 @@ class MakePaymentScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAlternativePaymentCard(String title) {
-    return Expanded(
-      child: Container(
-        height: 48.h,
-        decoration: BoxDecoration(
-          color: const Color(0xFFF4F5F7),
-          borderRadius: BorderRadius.circular(12.r),
+  // ---------- ALTERNATIVE PAYMENT SVG CARD WIDGET ----------
+  Widget _buildAlternativePaymentCard(String svgIconPath) {
+    return Container(
+      width: 86.w,
+      height: 46.h,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(
+          color: const Color(0xFFD0D7E2),
+          width: 1,
         ),
-        child: Center(
-          child: Text(
-            title,
-            style: GoogleFonts.jost(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF333333),
-            ),
-          ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+      child: Center(
+        child: SvgPicture.asset(
+          svgIconPath,
+          fit: BoxFit.contain,
         ),
       ),
     );

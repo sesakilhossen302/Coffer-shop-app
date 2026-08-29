@@ -10,6 +10,7 @@ import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/AppImg/app_img.dart';
 import '../../../../helper/network_img/custom_netwrok_image.dart';
 import '../../../Widgegt/navBar/nav_bar.dart';
+import '../../Branches/view/branches_screen.dart';
 import '../../Order/view/order_screen.dart';
 import '../../Rewards/view/rewards_screen.dart';
 import '../controller/home_controller.dart';
@@ -35,6 +36,9 @@ class HomeScreen extends StatelessWidget {
               }
               if (controller.selectedNavIndex.value == 2) {
                 return const RewardsScreen();
+              }
+              if (controller.selectedNavIndex.value == 3) {
+                return const BranchesScreen();
               }
               return _buildHomeContent(controller);
             }),

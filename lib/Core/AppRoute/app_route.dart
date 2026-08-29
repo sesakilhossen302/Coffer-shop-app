@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../View/Screen/Branches/view/branches_screen.dart';
 import '../../View/Screen/GiftCard/view/add_existing_gift_card_screen.dart';
 import '../../View/Screen/GiftCard/view/added_to_wallet_success_screen.dart';
 import '../../View/Screen/GiftCard/view/gift_card_added_screen.dart';
@@ -45,6 +46,7 @@ class AppRoute {
   static const String reviewGiftCardScreen = '/review-gift-card';
   static const String addedToWalletSuccessScreen = '/added-to-wallet-success';
   static const String giftCardsCatalogScreen = '/gift-cards-catalog';
+  static const String branchesScreen = '/branches';
 
   static List<GetPage> routes = [
     GetPage(
@@ -134,6 +136,10 @@ class AppRoute {
     GetPage(
       name: giftCardsCatalogScreen,
       page: () => const GiftCardsCatalogScreen(),
+    ),
+    GetPage(
+      name: branchesScreen,
+      page: () => const BranchesScreen(),
     ),
   ];
 }

@@ -3,6 +3,7 @@ import '../../View/Screen/Branches/view/branch_search_location_screen.dart';
 import '../../View/Screen/Branches/view/branches_screen.dart';
 import '../../View/Screen/Branches/view/map_options_screen.dart';
 import '../../View/Screen/Branches/view/shop_details_screen.dart';
+import '../../View/Screen/Favorite/view/my_favorite_screen.dart';
 import '../../View/Screen/GiftCard/view/add_existing_gift_card_screen.dart';
 import '../../View/Screen/GiftCard/view/added_to_wallet_success_screen.dart';
 import '../../View/Screen/GiftCard/view/gift_card_added_screen.dart';
@@ -59,6 +60,7 @@ class AppRoute {
   static const String profileScreen = '/profile';
   static const String editProfileScreen = '/edit-profile';
   static const String myWalletScreen = '/my-wallet';
+  static const String myFavoriteScreen = '/my-favorite';
 
   static List<GetPage> routes = [
     GetPage(
@@ -176,6 +178,10 @@ class AppRoute {
     GetPage(
       name: myWalletScreen,
       page: () => const MyWalletScreen(),
+    ),
+    GetPage(
+      name: myFavoriteScreen,
+      page: () => const MyFavoriteScreen(),
     ),
   ];
 }

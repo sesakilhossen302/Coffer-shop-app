@@ -231,8 +231,7 @@ class ProfileScreen extends StatelessWidget {
                         _buildMenuItem(
                           iconPath: AppIcons.favoriteIconSvg,
                           title: StaticString.favoriteMenu,
-                          onTap: () =>
-                              Get.toNamed(AppRoute.branchSearchLocationScreen),
+                          onTap: () => Get.toNamed(AppRoute.myFavoriteScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.orderHistoryIconSvg,

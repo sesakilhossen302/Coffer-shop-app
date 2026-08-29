@@ -191,6 +191,25 @@ class StaticString {
       'Once added, the amount will be available in your wallet balance.';
   static const String confirmAndAdd = 'Confirm & Add';
 
+  // Added To Wallet Success & Catalog Strings
+  static const String addedToWallet = 'Added to wallet';
+  static const String addedSuccessfullyExclamation = 'Added Successfully!';
+  static const String addedToWalletSubMsg =
+      '400 MXN has been added to your wallet\nfrom your Coffecito gift card.';
+  static const String amountAdded = 'Amount added';
+  static const String newWalletBalanceLabel = 'New Wallet Balance';
+  static const String goToMyWallet = 'Go to My Wallet';
+  static const String backToHome = 'Back to Home';
+  static const String giftCardsTitle = 'Gift Cards';
+  static const String yourGiftCard = 'Your Gift Card';
+  static const String totalGiftCardAvailable = 'Total Gift Card Available: 3';
+  static const String totalAmountAvailable = 'Total Amount: 1200 MXN';
+  static const String available = 'Available';
+  static const String sent = 'Sent';
+  static const String redeemed = 'Redeemed';
+  static const String receivedBadge = 'Received';
+  static const String purchasedBadge = 'Purchased';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

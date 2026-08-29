@@ -321,8 +321,10 @@ class OrderScreen extends StatelessWidget {
 
   // ---------- PRODUCT CARD WIDGET ----------
   Widget _buildProductCard(ProductModel product) {
-    return Container(
-      decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () => Get.toNamed(AppRoute.itemDetailsScreen, arguments: product),
+      child: Container(
+        decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
@@ -411,6 +413,7 @@ class OrderScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

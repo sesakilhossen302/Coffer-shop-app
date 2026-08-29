@@ -473,95 +473,98 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildProductCard(ProductModel product) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      padding: EdgeInsets.all(12.r),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Product Image
-          Expanded(
-            child: Center(
-              child: CustomNetworkImage(
-                imageUrl: product.imageUrl,
-                width: double.infinity,
-                height: double.infinity,
-                borderRadius: 14.r,
-              ),
+    return GestureDetector(
+      onTap: () => Get.toNamed(AppRoute.itemDetailsScreen, arguments: product),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
             ),
-          ),
-          SizedBox(height: 10.h),
-
-          // Title
-          Text(
-            product.title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.jost(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF1E90FF),
-            ),
-          ),
-
-          SizedBox(height: 2.h),
-
-          // Description
-          Text(
-            product.description,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.jost(
-              fontSize: 11.sp,
-              color: const Color(0xFF888888),
-              height: 1.2,
-            ),
-          ),
-
-          SizedBox(height: 10.h),
-
-          // Price & Add Button Row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '\$${product.price.toStringAsFixed(2)}',
-                style: GoogleFonts.jost(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF195ABE),
+          ],
+        ),
+        padding: EdgeInsets.all(12.r),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product Image
+            Expanded(
+              child: Center(
+                child: CustomNetworkImage(
+                  imageUrl: product.imageUrl,
+                  width: double.infinity,
+                  height: double.infinity,
+                  borderRadius: 14.r,
                 ),
               ),
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(10.r),
-                child: Container(
-                  width: 32.w,
-                  height: 32.h,
-                  decoration: BoxDecoration(
+            ),
+            SizedBox(height: 10.h),
+
+            // Title
+            Text(
+              product.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.jost(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF1E90FF),
+              ),
+            ),
+
+            SizedBox(height: 2.h),
+
+            // Description
+            Text(
+              product.description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.jost(
+                fontSize: 11.sp,
+                color: const Color(0xFF888888),
+                height: 1.2,
+              ),
+            ),
+
+            SizedBox(height: 10.h),
+
+            // Price & Add Button Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '\$${product.price.toStringAsFixed(2)}',
+                  style: GoogleFonts.jost(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
                     color: const Color(0xFF195ABE),
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 20,
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                InkWell(
+                  onTap: () {},
+                  borderRadius: BorderRadius.circular(10.r),
+                  child: Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF195ABE),
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

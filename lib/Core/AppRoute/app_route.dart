@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import '../../View/Screen/Home/view/home_screen.dart';
+import '../../View/Screen/ItemDetails/view/item_details_screen.dart';
 import '../../View/Screen/LoadingScreen/loading_screen.dart';
 import '../../View/Screen/Login/view/login_screen.dart';
 import '../../View/Screen/MyCart/view/my_cart_screen.dart';
 import '../../View/Screen/Notification/view/notification_screen.dart';
+import '../../View/Screen/OrderSummary/view/order_summary_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
@@ -13,51 +15,53 @@ class AppRoute {
   static const String startNowScreen = '/start-now';
   static const String loginScreen = '/login';
   static const String signUpScreen = '/sign-up';
-  static const String otpScreen = '/otp';
+  static const String otpScreen = '/otp-verification';
   static const String homeScreen = '/home';
   static const String notificationScreen = '/notification';
   static const String myCartScreen = '/my-cart';
+  static const String itemDetailsScreen = '/item-details';
+  static const String orderSummaryScreen = '/order-summary';
 
   static List<GetPage> routes = [
     GetPage(
       name: loadingScreen,
       page: () => const LoadingScreen(),
-      transition: Transition.fadeIn,
     ),
     GetPage(
       name: startNowScreen,
       page: () => const StartNowScreen(),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: loginScreen,
       page: () => const LoginScreen(),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: signUpScreen,
       page: () => const SignUpScreen(),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: otpScreen,
       page: () => const OtpScreen(),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: homeScreen,
       page: () => const HomeScreen(),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: notificationScreen,
       page: () => const NotificationScreen(),
-      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: myCartScreen,
       page: () => const MyCartScreen(),
-      transition: Transition.rightToLeftWithFade,
+    ),
+    GetPage(
+      name: itemDetailsScreen,
+      page: () => const ItemDetailsScreen(),
+    ),
+    GetPage(
+      name: orderSummaryScreen,
+      page: () => const OrderSummaryScreen(),
     ),
   ];
 }

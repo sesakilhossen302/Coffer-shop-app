@@ -64,6 +64,15 @@ class StaticString {
   static const String yourCartIsEmpty = 'Your cart is empty';
   static const String looksLikeEmptyCart = "Looks like you haven't added anything to your cart yet.";
 
+  // Order Strings
+  static const String whatAreYouCraving = 'What are you craving today?';
+  static const String findYourNextFavorite = 'Find your next favorite';
+  static const String categories = 'Categories';
+  static const String hotDrinks = 'Hot drinks';
+  static const String coldDrinks = 'Cold drinks';
+  static const String bakery = 'Bakery';
+  static const String snacks = 'Snacks';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

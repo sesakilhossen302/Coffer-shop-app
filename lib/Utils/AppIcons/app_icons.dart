@@ -53,6 +53,7 @@ class AppIcons {
   static const String instagramSocialIconSvg = '$basePath/Istagram-Social Icons.svg';
   static const String facebookSocialIconSvg = '$basePath/fd-Social Icons.svg';
 
-  // Favorite SVG Icon
+  // Favorite & Map SVG Icons
   static const String favoriteIconSvg = '$basePath/Favorite.svg';
+  static const String worldMapIconSvg = '$basePath/noto_world-map.svg';
 }

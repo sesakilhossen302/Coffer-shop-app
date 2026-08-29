@@ -210,6 +210,13 @@ class StaticString {
   static const String receivedBadge = 'Received';
   static const String purchasedBadge = 'Purchased';
 
+  // Available Rewards Catalog Strings
+  static const String availableRewardsTitle = 'Available Rewards';
+  static const String all = 'All';
+  static const String earned = 'Earned';
+  static const String redeemedBadge = 'Redeemed';
+  static const String cafeGratis = 'Café gratis';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

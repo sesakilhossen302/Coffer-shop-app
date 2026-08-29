@@ -53,18 +53,11 @@ class OrderSummaryController extends GetxController {
   }
 
   void placeOrder() {
-    Get.defaultDialog(
-      title: 'Order Placed!',
-      titleStyle: const TextStyle(fontWeight: FontWeight.bold),
-      content: const Text(
-        'Your order has been placed successfully. Thank you for choosing Coffecito!',
-        textAlign: TextAlign.center,
-      ),
-      textConfirm: 'Back to Home',
-      confirmTextColor: Colors.white,
-      buttonColor: const Color(0xFF195ABE),
-      onConfirm: () {
-        Get.offAllNamed(AppRoute.homeScreen);
+    // Navigate to MakePaymentScreen (Screen 2 matching connected checkout flow)
+    Get.toNamed(
+      AppRoute.makePaymentScreen,
+      arguments: {
+        'amount': grandTotal,
       },
     );
   }

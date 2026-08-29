@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+import '../../../Core/AppRoute/app_route.dart';
 import '../../../Utils/AppColors/app_colors.dart';
 import '../../../Utils/StaticString/static_string.dart';
 import '../../Widgegt/CoffecitoMascot/coffecito_mascot.dart';
@@ -51,7 +53,7 @@ class SplashScreen extends StatelessWidget {
                 height: 56.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to Home or Main App Flow
+                    Get.toNamed(AppRoute.loginScreen);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.startNowButton,

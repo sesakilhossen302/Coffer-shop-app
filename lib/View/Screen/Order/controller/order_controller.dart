@@ -5,7 +5,16 @@ import '../../Home/model/product_model.dart';
 import '../model/category_model.dart';
 
 class OrderController extends GetxController {
-  final TextEditingController searchController = TextEditingController();
+  TextEditingController _searchController = TextEditingController();
+  TextEditingController get searchController {
+    try {
+      final _ = _searchController.text;
+    } catch (_) {
+      _searchController = TextEditingController(text: searchQuery.value);
+    }
+    return _searchController;
+  }
+
   final RxString searchQuery = ''.obs;
   final RxInt selectedCategoryIndex = 0.obs;
 
@@ -167,11 +176,5 @@ class OrderController extends GetxController {
   void clearSearch() {
     searchController.clear();
     searchQuery.value = '';
-  }
-
-  @override
-  void onClose() {
-    searchController.dispose();
-    super.onClose();
   }
 }

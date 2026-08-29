@@ -4,7 +4,16 @@ import '../model/offer_model.dart';
 import '../model/product_model.dart';
 
 class HomeController extends GetxController {
-  final TextEditingController searchController = TextEditingController();
+  TextEditingController _searchController = TextEditingController();
+  TextEditingController get searchController {
+    try {
+      final _ = _searchController.text;
+    } catch (_) {
+      _searchController = TextEditingController(text: searchQuery.value);
+    }
+    return _searchController;
+  }
+
   final RxString searchQuery = ''.obs;
   final RxInt selectedNavIndex = 0.obs;
   final RxInt notificationCount = 1.obs;
@@ -69,11 +78,5 @@ class HomeController extends GetxController {
   void clearSearch() {
     searchController.clear();
     searchQuery.value = '';
-  }
-
-  @override
-  void onClose() {
-    searchController.dispose();
-    super.onClose();
   }
 }

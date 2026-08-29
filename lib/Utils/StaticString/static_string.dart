@@ -104,6 +104,23 @@ class StaticString {
   static const String preparingYourOrder = 'Preparing your order';
   static const String preparingCoffeeAndExtras = 'We are preparing your coffee and extras';
 
+  // Rewards Screen Strings
+  static const String yourPoints = 'Your points';
+  static const String keepCollecting = 'Keep collecting and unlock new rewards';
+  static const String pointsText = 'points';
+  static const String yourProgress = 'Your progress';
+  static const String youNeedMorePoints = 'You need 550 more points for a free coffee';
+  static const String availableRewards = 'Available rewards';
+  static const String viewAll = 'View All';
+  static const String redeemNow = 'Redeem Now';
+  static const String howDoesItWork = 'How does it work?';
+  static const String earnPointsDesc =
+      'Earn points on every purchase and redeem them for exclusive rewards.';
+  static const String giftCard = 'Gift Card';
+  static const String purchaseGiftCard = 'Purchase Gift Card';
+  static const String addExistingGiftCard = 'Add Existing Gift Card';
+  static const String giveCoffeeAndRewards = 'Give coffee and rewards on a single card.';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

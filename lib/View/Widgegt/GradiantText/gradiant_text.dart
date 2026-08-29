@@ -25,7 +25,7 @@ class GradiantText extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: GoogleFonts.sora(
+        style: GoogleFonts.jost(
           fontSize: fontSize.sp,
           fontWeight: fontWeight,
         ),

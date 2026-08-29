@@ -32,7 +32,7 @@ class CustomText extends StatelessWidget {
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: maxLines != null ? overflow : null,
-      style: GoogleFonts.sora(
+      style: GoogleFonts.jost(
         fontSize: fontSize.sp,
         fontWeight: fontWeight,
         color: color,

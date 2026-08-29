@@ -1,5 +1,7 @@
 class StaticString {
-  static const String appTitle = 'Coffee Shop';
+  static const String appTitle = 'COFFECITO';
+  static const String readyToBoost = 'READY TO BOOST\nYOUR DAY?';
+  static const String startNow = 'Start Now';
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

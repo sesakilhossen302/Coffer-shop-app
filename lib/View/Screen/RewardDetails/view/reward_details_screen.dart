@@ -305,7 +305,7 @@ class RewardDetailsScreen extends StatelessWidget {
             image: NetworkImage(reward.imageUrl),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-              const Color(0xFF1E90FF).withValues(alpha: 0.85),
+              const Color(0xFF1E90FF).withValues(alpha: 0.38),
               BlendMode.srcATop,
             ),
           ),

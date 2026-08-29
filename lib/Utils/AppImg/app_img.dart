@@ -8,4 +8,5 @@ class AppImg {
   static const String placeholder = '$basePath/placeholder.png';
   static const String profileAvatar = '$basePath/profile_avatar.png';
   static const String emptyCart = '$basePath/empty_cart.png';
+  static const String noFavoriteShopImg = '$basePath/No favorite shop yet img .png';
 }

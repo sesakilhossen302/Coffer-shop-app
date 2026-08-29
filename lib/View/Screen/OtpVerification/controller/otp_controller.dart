@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../Core/AppRoute/app_route.dart';
 
 class OtpController extends GetxController {
   final TextEditingController pinController = TextEditingController();
@@ -16,7 +17,8 @@ class OtpController extends GetxController {
     final args = Get.arguments;
     if (args != null && args is Map) {
       isEmailVerification.value = args['isEmail'] ?? false;
-      targetDestination.value = args['target'] ?? (isEmailVerification.value ? 'helloworld@gmail.com' : '+52 9999 10 20 30');
+      targetDestination.value = args['target'] ??
+          (isEmailVerification.value ? 'helloworld@gmail.com' : '+52 9999 10 20 30');
     }
     startResendTimer();
   }
@@ -37,7 +39,16 @@ class OtpController extends GetxController {
     if (pin.length == 5) {
       if (pin == '12345') {
         hasError.value = false;
-        // Navigation on success
+        if (!isEmailVerification.value) {
+          // Correct Phone OTP -> Transition to Email OTP Verification
+          isEmailVerification.value = true;
+          targetDestination.value = 'helloworld@gmail.com';
+          pinController.clear();
+          startResendTimer();
+        } else {
+          // Correct Email OTP -> Complete verification and navigate to HomeScreen
+          Get.offAllNamed(AppRoute.homeScreen);
+        }
       } else {
         hasError.value = true;
       }

@@ -23,6 +23,7 @@ import '../../View/Screen/OrderHistory/view/order_history_screen.dart';
 import '../../View/Screen/OrderStatus/view/order_received_screen.dart';
 import '../../View/Screen/OrderSummary/view/order_summary_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
+import '../../View/Screen/Profile/view/delete_account_screen.dart';
 import '../../View/Screen/Profile/view/edit_profile_screen.dart';
 import '../../View/Screen/Profile/view/profile_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_details_screen.dart';
@@ -69,6 +70,7 @@ class AppRoute {
   static const String orderDetailsScreen = '/order-details';
   static const String termsAndConditionsScreen = '/terms-and-conditions';
   static const String privacyPolicyScreen = '/privacy-policy';
+  static const String deleteAccountScreen = '/delete-account';
 
   static List<GetPage> routes = [
     GetPage(
@@ -206,6 +208,10 @@ class AppRoute {
     GetPage(
       name: privacyPolicyScreen,
       page: () => const PrivacyPolicyScreen(),
+    ),
+    GetPage(
+      name: deleteAccountScreen,
+      page: () => const DeleteAccountScreen(),
     ),
   ];
 }

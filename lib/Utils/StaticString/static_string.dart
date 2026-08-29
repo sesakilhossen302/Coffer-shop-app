@@ -3,7 +3,7 @@ class StaticString {
   static const String readyToBoost = 'READY TO BOOST\nYOUR DAY?';
   static const String startNow = 'Start Now';
   
-  // Auth Strings
+  // Auth & Login Strings
   static const String welcome = 'WELCOME!';
   static const String enterNumberToContinue = 'Enter your number to continue';
   static const String enterEmailToContinue = 'Enter your email to continue';
@@ -15,6 +15,27 @@ class StaticString {
   static const String usePhoneNumber = 'Use Phone Number';
   static const String dontHaveAccount = "Don't have an account?";
   static const String signUp = 'Sign Up';
+
+  // Sign Up Strings
+  static const String joinTheClub = 'Join the club!';
+  static const String createAccountToContinue = 'Create an account to continue';
+  static const String fullName = 'Full name';
+  static const String email = 'Email';
+  static const String dobPlaceholder = '18/03/2024';
+  static const String phoneNumber = 'Phone Number';
+  static const String createAccount = 'Create account';
+  static const String termsAgreement = 'At creating an account or logging in, you agree to our ';
+  static const String termsAndConditions = 'Terms and Conditions';
+  static const String alreadyHaveAccount = 'Already have an account?';
+  static const String logIn = 'Log in';
+
+  // OTP Verification Strings
+  static const String enterTheCode = 'Enter the code';
+  static const String checkYourEmail = 'Check your email';
+  static const String sentSmsToPhone = 'We sent an SMS with a verification code to your phone';
+  static const String sentCodeToEmail = 'We sent a code to';
+  static const String incorrectCodeTryAgain = 'Incorrect code, try again';
+  static const String resendCode = 'Resend code';
 
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';

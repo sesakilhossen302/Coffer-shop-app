@@ -3,7 +3,15 @@ import 'package:get/get.dart';
 import '../model/cart_item_model.dart';
 
 class CartController extends GetxController {
-  final TextEditingController discountCodeController = TextEditingController();
+  TextEditingController _discountCodeController = TextEditingController();
+  TextEditingController get discountCodeController {
+    try {
+      final _ = _discountCodeController.text;
+    } catch (_) {
+      _discountCodeController = TextEditingController();
+    }
+    return _discountCodeController;
+  }
 
   final RxList<CartItemModel> cartItems = <CartItemModel>[
     CartItemModel(
@@ -65,11 +73,5 @@ class CartController extends GetxController {
 
   void placeOrder() {
     // Process checkout order
-  }
-
-  @override
-  void onClose() {
-    discountCodeController.dispose();
-    super.onClose();
   }
 }

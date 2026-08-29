@@ -3,7 +3,15 @@ import 'package:get/get.dart';
 import '../../../../Core/AppRoute/app_route.dart';
 
 class OrderSummaryController extends GetxController {
-  final TextEditingController discountCodeController = TextEditingController();
+  TextEditingController _discountCodeController = TextEditingController();
+  TextEditingController get discountCodeController {
+    try {
+      final _ = _discountCodeController.text;
+    } catch (_) {
+      _discountCodeController = TextEditingController();
+    }
+    return _discountCodeController;
+  }
 
   final RxString itemTitle = 'Iced Americano'.obs;
   final RxString itemCustomization = 'Extra shot of espresso + almond milk'.obs;
@@ -53,18 +61,11 @@ class OrderSummaryController extends GetxController {
   }
 
   void placeOrder() {
-    // Navigate to MakePaymentScreen (Screen 2 matching connected checkout flow)
     Get.toNamed(
       AppRoute.makePaymentScreen,
       arguments: {
         'amount': grandTotal,
       },
     );
-  }
-
-  @override
-  void onClose() {
-    discountCodeController.dispose();
-    super.onClose();
   }
 }

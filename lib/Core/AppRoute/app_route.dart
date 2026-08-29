@@ -18,6 +18,7 @@ import '../../View/Screen/OrderSummary/view/order_summary_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_details_screen.dart';
 import '../../View/Screen/RewardDetails/view/reward_redeemed_screen.dart';
+import '../../View/Screen/Rewards/view/available_rewards_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
 
@@ -36,6 +37,7 @@ class AppRoute {
   static const String orderReceivedScreen = '/order-received';
   static const String rewardDetailsScreen = '/reward-details';
   static const String rewardRedeemedScreen = '/reward-redeemed';
+  static const String availableRewardsScreen = '/available-rewards';
   static const String giftCardDetailsScreen = '/gift-card-details';
   static const String purchaseGiftCardScreen = '/purchase-gift-card';
   static const String addExistingGiftCardScreen = '/add-existing-gift-card';
@@ -100,6 +102,10 @@ class AppRoute {
     GetPage(
       name: rewardRedeemedScreen,
       page: () => const RewardRedeemedScreen(),
+    ),
+    GetPage(
+      name: availableRewardsScreen,
+      page: () => const AvailableRewardsScreen(),
     ),
     GetPage(
       name: giftCardDetailsScreen,

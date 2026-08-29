@@ -257,12 +257,15 @@ class RewardsScreen extends StatelessWidget {
                           color: const Color(0xFF1E90FF),
                         ),
                       ),
-                      Text(
-                        StaticString.viewAll,
-                        style: GoogleFonts.jost(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF1E90FF),
+                      GestureDetector(
+                        onTap: () => Get.toNamed(AppRoute.availableRewardsScreen),
+                        child: Text(
+                          StaticString.viewAll,
+                          style: GoogleFonts.jost(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFF1E90FF),
+                          ),
                         ),
                       ),
                     ],

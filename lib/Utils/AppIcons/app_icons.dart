@@ -47,8 +47,12 @@ class AppIcons {
   static const String user = '$basePath/user.png';
   static const String back = '$basePath/back.png';
   static const String notification = '$basePath/notification.png';
+  
   // Social SVG Icons
   static const String whatsappSocialIconSvg = '$basePath/W-PSocial Icons.svg';
   static const String instagramSocialIconSvg = '$basePath/Istagram-Social Icons.svg';
   static const String facebookSocialIconSvg = '$basePath/fd-Social Icons.svg';
+
+  // Favorite SVG Icon
+  static const String favoriteIconSvg = '$basePath/Favorite.svg';
 }

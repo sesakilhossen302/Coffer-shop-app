@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../Utils/AppIcons/app_icons.dart';
 import '../../../../Utils/StaticString/static_string.dart';
 
 class MapOptionsScreen extends StatelessWidget {
@@ -68,21 +70,12 @@ class MapOptionsScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 48.h),
 
-                  // 3D Folded Map Graphic Illustration
-                  Container(
+                  // 3D Folded World Map SVG Illustration
+                  SvgPicture.asset(
+                    AppIcons.worldMapIconSvg,
+                    width: 140.w,
                     height: 140.h,
-                    width: 180.w,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF0F4F8),
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.map_rounded,
-                        color: const Color(0xFF1E90FF),
-                        size: 80.r,
-                      ),
-                    ),
+                    fit: BoxFit.contain,
                   ),
 
                   SizedBox(height: 32.h),

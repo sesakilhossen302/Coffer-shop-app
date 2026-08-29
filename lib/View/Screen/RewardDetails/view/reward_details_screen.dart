@@ -118,6 +118,26 @@ class RewardDetailsScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+
+                          // Optional Green "Redeemed" Badge (Matching Screen 2 Right Image)
+                          if (reward.isRedeemed) ...[
+                            SizedBox(height: 6.h),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF34C759),
+                                borderRadius: BorderRadius.circular(6.r),
+                              ),
+                              child: Text(
+                                StaticString.redeemedBadge,
+                                style: GoogleFonts.jost(
+                                  fontSize: 11.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -147,11 +167,15 @@ class RewardDetailsScreen extends StatelessWidget {
 
                     // Progress Section (50/750 or 50/50 Green)
                     Text(
-                      '${controller.userPoints.value}/${reward.requiredPoints}',
+                      reward.isRedeemed
+                          ? '${reward.requiredPoints}/${reward.requiredPoints}'
+                          : '${controller.userPoints.value}/${reward.requiredPoints}',
                       style: GoogleFonts.jost(
                         fontSize: 28.sp,
                         fontWeight: FontWeight.w900,
-                        color: hasEnough ? const Color(0xFF34C759) : const Color(0xFF195ABE),
+                        color: (reward.isRedeemed || hasEnough)
+                            ? const Color(0xFF34C759)
+                            : const Color(0xFF195ABE),
                       ),
                     ),
                     SizedBox(height: 8.h),
@@ -160,16 +184,18 @@ class RewardDetailsScreen extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(6.r),
                       child: LinearProgressIndicator(
-                        value: controller.progressRatio,
+                        value: reward.isRedeemed ? 1.0 : controller.progressRatio,
                         minHeight: 10.h,
                         backgroundColor: const Color(0xFFE5E5E5),
                         valueColor: AlwaysStoppedAnimation<Color>(
-                          hasEnough ? const Color(0xFF34C759) : const Color(0xFFFFB800),
+                          (reward.isRedeemed || hasEnough)
+                              ? const Color(0xFF34C759)
+                              : const Color(0xFFFFB800),
                         ),
                       ),
                     ),
 
-                    if (!hasEnough) ...[
+                    if (!hasEnough && !reward.isRedeemed) ...[
                       SizedBox(height: 6.h),
                       Text(
                         'You need ${controller.pointsNeeded} more points for a free coffee',
@@ -181,90 +207,92 @@ class RewardDetailsScreen extends StatelessWidget {
                       ),
                     ],
 
-                    SizedBox(height: 24.h),
+                    if (!reward.isRedeemed) ...[
+                      SizedBox(height: 24.h),
 
-                    // Info Details Container
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF5F8FC),
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                      padding: EdgeInsets.all(16.r),
-                      child: Column(
-                        children: [
-                          if (!hasEnough) ...[
-                            // Item 1: Points required (Only shown when points needed)
+                      // Info Details Container
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF5F8FC),
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                        padding: EdgeInsets.all(16.r),
+                        child: Column(
+                          children: [
+                            if (!hasEnough) ...[
+                              // Item 1: Points required (Only shown when points needed)
+                              _buildInfoRow(
+                                icon: Icons.monetization_on_outlined,
+                                title: StaticString.pointsRequired,
+                                subtitle: null,
+                                trailingText: '${reward.requiredPoints} pts',
+                              ),
+                              SizedBox(height: 16.h),
+                            ],
+
+                            // Item 2: How to redeem
                             _buildInfoRow(
-                              icon: Icons.monetization_on_outlined,
-                              title: StaticString.pointsRequired,
-                              subtitle: null,
-                              trailingText: '${reward.requiredPoints} pts',
+                              icon: Icons.info_outline_rounded,
+                              title: StaticString.howToRedeem,
+                              subtitle: StaticString.howToRedeemDesc,
+                              trailingText: null,
                             ),
                             SizedBox(height: 16.h),
+
+                            // Item 3: Valid for
+                            _buildInfoRow(
+                              icon: Icons.calendar_today_outlined,
+                              title: StaticString.validFor,
+                              subtitle: StaticString.validForDesc,
+                              trailingText: null,
+                            ),
+                            SizedBox(height: 16.h),
+
+                            // Item 4: Available at
+                            _buildInfoRow(
+                              icon: Icons.location_on_outlined,
+                              title: StaticString.availableAt,
+                              subtitle: StaticString.availableAtDesc,
+                              trailingText: null,
+                            ),
                           ],
-
-                          // Item 2: How to redeem
-                          _buildInfoRow(
-                            icon: Icons.info_outline_rounded,
-                            title: StaticString.howToRedeem,
-                            subtitle: StaticString.howToRedeemDesc,
-                            trailingText: null,
-                          ),
-                          SizedBox(height: 16.h),
-
-                          // Item 3: Valid for
-                          _buildInfoRow(
-                            icon: Icons.calendar_today_outlined,
-                            title: StaticString.validFor,
-                            subtitle: StaticString.validForDesc,
-                            trailingText: null,
-                          ),
-                          SizedBox(height: 16.h),
-
-                          // Item 4: Available at
-                          _buildInfoRow(
-                            icon: Icons.location_on_outlined,
-                            title: StaticString.availableAt,
-                            subtitle: StaticString.availableAtDesc,
-                            trailingText: null,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
 
-                    SizedBox(height: 28.h),
+                      SizedBox(height: 28.h),
 
-                    // Primary Action Button: "Redeem Now"
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: hasEnough ? controller.redeem : null,
-                        borderRadius: BorderRadius.circular(14.r),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                            color: hasEnough
-                                ? const Color(0xFF195ABE)
-                                : const Color(0xFFA6C2F2), // Muted disabled blue
-                            borderRadius: BorderRadius.circular(14.r),
-                          ),
-                          child: Center(
-                            child: Text(
-                              StaticString.redeemNow,
-                              style: GoogleFonts.jost(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                      // Primary Action Button: "Redeem Now"
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: hasEnough ? controller.redeem : null,
+                          borderRadius: BorderRadius.circular(14.r),
+                          child: Container(
+                            width: double.infinity,
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                              color: hasEnough
+                                  ? const Color(0xFF195ABE)
+                                  : const Color(0xFFA6C2F2), // Muted disabled blue
+                              borderRadius: BorderRadius.circular(14.r),
+                            ),
+                            child: Center(
+                              child: Text(
+                                StaticString.redeemNow,
+                                style: GoogleFonts.jost(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
 
-                    SizedBox(height: 12.h),
+                    SizedBox(height: 36.h),
 
                     // Secondary Action Button: "Go Back"
                     Center(

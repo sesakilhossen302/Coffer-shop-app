@@ -27,6 +27,7 @@ import '../../View/Screen/RewardDetails/view/reward_redeemed_screen.dart';
 import '../../View/Screen/Rewards/view/available_rewards_screen.dart';
 import '../../View/Screen/SignUp/view/sign_up_screen.dart';
 import '../../View/Screen/SplashScreen/start_now_screen.dart';
+import '../../View/Screen/Wallet/view/my_wallet_screen.dart';
 
 class AppRoute {
   static const String loadingScreen = '/loading';
@@ -57,6 +58,7 @@ class AppRoute {
   static const String mapOptionsScreen = '/map-options';
   static const String profileScreen = '/profile';
   static const String editProfileScreen = '/edit-profile';
+  static const String myWalletScreen = '/my-wallet';
 
   static List<GetPage> routes = [
     GetPage(
@@ -170,6 +172,10 @@ class AppRoute {
     GetPage(
       name: editProfileScreen,
       page: () => const EditProfileScreen(),
+    ),
+    GetPage(
+      name: myWalletScreen,
+      page: () => const MyWalletScreen(),
     ),
   ];
 }

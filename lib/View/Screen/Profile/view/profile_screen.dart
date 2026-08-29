@@ -226,8 +226,7 @@ class ProfileScreen extends StatelessWidget {
                         _buildMenuItem(
                           iconPath: AppIcons.myWalletIconSvg,
                           title: StaticString.myWallet,
-                          onTap: () =>
-                              Get.toNamed(AppRoute.giftCardsCatalogScreen),
+                          onTap: () => Get.toNamed(AppRoute.myWalletScreen),
                         ),
                         _buildMenuItem(
                           iconPath: AppIcons.favoriteIconSvg,

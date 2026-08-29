@@ -188,16 +188,7 @@ class AddedToWalletSuccessScreen extends StatelessWidget {
                   Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      onTap: () {
-                        Get.snackbar(
-                          'Wallet',
-                          'Opening your Coffecito Wallet...',
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: const Color(0xFF195ABE),
-                          colorText: Colors.white,
-                        );
-                        Get.offAllNamed(AppRoute.homeScreen);
-                      },
+                      onTap: () => Get.toNamed(AppRoute.myWalletScreen),
                       borderRadius: BorderRadius.circular(14.r),
                       child: Container(
                         width: double.infinity,

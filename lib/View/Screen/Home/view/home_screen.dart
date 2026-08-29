@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                     // Top Blue Header Section
                     _buildTopHeader(controller),
 
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 24.h),
 
                     // Main Body Content
                     Padding(
@@ -79,28 +80,37 @@ class HomeScreen extends StatelessWidget {
 
   // ---------- TOP BLUE HEADER SECTION ----------
   Widget _buildTopHeader(HomeController controller) {
+    final double statusBarHeight = MediaQuery.of(Get.context!).padding.top;
+
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Color(0xFF1E90FF),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E90FF),
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(24),
-          bottomRight: Radius.circular(24),
+          bottomLeft: Radius.circular(28.r),
+          bottomRight: Radius.circular(28.r),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF1E90FF).withValues(alpha: 0.25),
+            blurRadius: 15,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       padding: EdgeInsets.only(
         left: 20.w,
         right: 20.w,
-        top: MediaQuery.of(Get.context!).padding.top + 12.h,
-        bottom: 20.h,
+        top: statusBarHeight + 14.h,
+        bottom: 24.h,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Greeting & Header Icons
+          // Greeting & Header Icons Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     'Welcome back, User!',
                     style: GoogleFonts.jost(
-                      fontSize: 20.sp,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -119,53 +129,62 @@ class HomeScreen extends StatelessWidget {
                     style: GoogleFonts.jost(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
-                      color: Colors.white.withValues(alpha: 0.85),
+                      color: Colors.white.withValues(alpha: 0.9),
                     ),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  // Cart Icon
+                  // Cart Icon Button
                   GestureDetector(
                     onTap: () {},
-                    child: SvgPicture.asset(
-                      AppIcons.shopIcon,
-                      width: 24.w,
-                      height: 24.h,
-                      colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                    child: Container(
+                      padding: EdgeInsets.all(6.r),
+                      child: SvgPicture.asset(
+                        AppIcons.shopIcon,
+                        width: 26.w,
+                        height: 26.h,
+                        colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                      ),
                     ),
                   ),
-                  SizedBox(width: 16.w),
+                  SizedBox(width: 12.w),
 
-                  // Notification Icon with Badge
+                  // Notification Icon Button with Red Badge
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
                       GestureDetector(
                         onTap: () {},
-                        child: SvgPicture.asset(
-                          AppIcons.notificationIcon,
-                          width: 24.w,
-                          height: 24.h,
-                          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                        child: Container(
+                          padding: EdgeInsets.all(6.r),
+                          child: SvgPicture.asset(
+                            AppIcons.notificationIcon,
+                            width: 26.w,
+                            height: 26.h,
+                            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                          ),
                         ),
                       ),
                       Positioned(
-                        right: -4.w,
-                        top: -4.h,
+                        right: 2.w,
+                        top: 2.h,
                         child: Container(
-                          padding: const EdgeInsets.all(4),
+                          width: 16.w,
+                          height: 16.h,
                           decoration: const BoxDecoration(
                             color: Color(0xFFFF3B30),
                             shape: BoxShape.circle,
                           ),
-                          child: Text(
-                            '1',
-                            style: GoogleFonts.jost(
-                              color: Colors.white,
-                              fontSize: 9.sp,
-                              fontWeight: FontWeight.bold,
+                          child: Center(
+                            child: Text(
+                              '1',
+                              style: GoogleFonts.jost(
+                                color: Colors.white,
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -177,21 +196,28 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 22.h),
 
-          // Search Bar Input Field
+          // Search Bar Input Container
           Container(
-            height: 48.h,
+            height: 50.h,
             decoration: BoxDecoration(
-              color: const Color(0xFFF2F4F7),
-              borderRadius: BorderRadius.circular(14.r),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.04),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               children: [
                 const Icon(
                   Icons.search_rounded,
-                  color: Color(0xFFA0A0A0),
+                  color: Color(0xFFA6B0C0),
                   size: 22,
                 ),
                 SizedBox(width: 10.w),
@@ -200,14 +226,15 @@ class HomeScreen extends StatelessWidget {
                     controller: controller.searchController,
                     onChanged: controller.onSearchChanged,
                     style: GoogleFonts.jost(
-                      fontSize: 14.sp,
+                      fontSize: 15.sp,
                       color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w500,
                     ),
                     decoration: InputDecoration(
                       hintText: 'Look for coffee',
                       hintStyle: GoogleFonts.jost(
                         fontSize: 14.sp,
-                        color: const Color(0xFFA0A0A0),
+                        color: const Color(0xFFA6B0C0),
                       ),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
@@ -245,7 +272,7 @@ class HomeScreen extends StatelessWidget {
         Text(
           'Sip more,Win more!',
           style: GoogleFonts.jost(
-            fontSize: 20.sp,
+            fontSize: 22.sp,
             fontWeight: FontWeight.bold,
             color: const Color(0xFF1E90FF),
           ),
@@ -254,17 +281,17 @@ class HomeScreen extends StatelessWidget {
         Text(
           'Earn points with every purchase',
           style: GoogleFonts.jost(
-            fontSize: 12.sp,
-            color: const Color(0xFF777777),
+            fontSize: 13.sp,
+            color: const Color(0xFF7D7D7D),
           ),
         ),
-        SizedBox(height: 12.h),
+        SizedBox(height: 14.h),
         Container(
           width: double.infinity,
-          height: 64.h,
+          height: 72.h,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16.r),
+            borderRadius: BorderRadius.circular(20.r),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.03),
@@ -276,22 +303,31 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Row(
             children: [
-              // Gold Coin Asset Image
-              Image.asset(
-                AppImg.coinImg,
-                width: 38.w,
-                height: 38.h,
-                errorBuilder: (context, error, stackTrace) => Container(
-                  width: 38.w,
-                  height: 38.h,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFFFC107),
-                    shape: BoxShape.circle,
+              // Gold Coin Image with Yellow Progress Arc Ring
+              SizedBox(
+                width: 48.w,
+                height: 48.h,
+                child: CustomPaint(
+                  painter: _CoinProgressArcPainter(),
+                  child: Center(
+                    child: Image.asset(
+                      AppImg.coinImg,
+                      width: 36.w,
+                      height: 36.h,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        width: 36.w,
+                        height: 36.h,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFFFC107),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.monetization_on, color: Colors.white),
+                      ),
+                    ),
                   ),
-                  child: const Icon(Icons.monetization_on, color: Colors.white),
                 ),
               ),
-              SizedBox(width: 12.w),
+              SizedBox(width: 14.w),
               Obx(
                 () => RichText(
                   text: TextSpan(
@@ -299,16 +335,16 @@ class HomeScreen extends StatelessWidget {
                       TextSpan(
                         text: '${controller.userPoints.value} ',
                         style: GoogleFonts.jost(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 28.sp,
+                          fontWeight: FontWeight.w900,
                           color: const Color(0xFF1E90FF),
                         ),
                       ),
                       TextSpan(
                         text: 'points',
                         style: GoogleFonts.jost(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
                           color: const Color(0xFF1E90FF),
                         ),
                       ),
@@ -319,7 +355,7 @@ class HomeScreen extends StatelessWidget {
               const Spacer(),
               const Icon(
                 Icons.arrow_forward_ios_rounded,
-                size: 16,
+                size: 18,
                 color: Color(0xFF1E90FF),
               ),
             ],
@@ -344,12 +380,12 @@ class HomeScreen extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         SizedBox(
-          height: 125.h,
+          height: 130.h,
           child: Obx(
             () => ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: controller.offerList.length,
-              separatorBuilder: (context, index) => SizedBox(width: 12.w),
+              separatorBuilder: (context, index) => SizedBox(width: 14.w),
               itemBuilder: (context, index) {
                 final offer = controller.offerList[index];
                 return _buildOfferBannerCard(offer);
@@ -363,17 +399,17 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildOfferBannerCard(OfferModel offer) {
     return Container(
-      width: 280.w,
+      width: 290.w,
       decoration: BoxDecoration(
         color: offer.backgroundColor,
-        borderRadius: BorderRadius.circular(18.r),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       clipBehavior: Clip.antiAlias,
       child: Row(
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(16.r),
+              padding: EdgeInsets.all(18.r),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -381,13 +417,13 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     offer.title,
                     style: GoogleFonts.jost(
-                      fontSize: 20.sp,
+                      fontSize: 21.sp,
                       fontWeight: FontWeight.w900,
                       color: const Color(0xFF195ABE),
                       height: 1.1,
                     ),
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 6.h),
                   Text(
                     '*Aplican términos y condiciones',
                     style: GoogleFonts.jost(
@@ -401,7 +437,7 @@ class HomeScreen extends StatelessWidget {
           ),
           CustomNetworkImage(
             imageUrl: offer.imageUrl,
-            width: 110.w,
+            width: 115.w,
             height: double.infinity,
             borderRadius: 0,
           ),
@@ -418,7 +454,7 @@ class HomeScreen extends StatelessWidget {
         Text(
           'Order again',
           style: GoogleFonts.jost(
-            fontSize: 18.sp,
+            fontSize: 20.sp,
             fontWeight: FontWeight.bold,
             color: const Color(0xFF195ABE),
           ),
@@ -433,7 +469,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 14.w,
               mainAxisSpacing: 14.h,
-              childAspectRatio: 0.72,
+              childAspectRatio: 0.70,
             ),
             itemBuilder: (context, index) {
               final product = controller.productList[index];
@@ -449,16 +485,16 @@ class HomeScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 8,
+            blurRadius: 10,
             offset: const Offset(0, 2),
           ),
         ],
       ),
-      padding: EdgeInsets.all(10.r),
+      padding: EdgeInsets.all(12.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -469,11 +505,11 @@ class HomeScreen extends StatelessWidget {
                 imageUrl: product.imageUrl,
                 width: double.infinity,
                 height: double.infinity,
-                borderRadius: 12.r,
+                borderRadius: 14.r,
               ),
             ),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 10.h),
 
           // Title
           Text(
@@ -487,19 +523,21 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
+          SizedBox(height: 2.h),
+
           // Description
           Text(
             product.description,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: GoogleFonts.jost(
-              fontSize: 10.sp,
+              fontSize: 11.sp,
               color: const Color(0xFF888888),
               height: 1.2,
             ),
           ),
 
-          SizedBox(height: 8.h),
+          SizedBox(height: 10.h),
 
           // Price & Add Button Row
           Row(
@@ -508,20 +546,20 @@ class HomeScreen extends StatelessWidget {
               Text(
                 '\$${product.price.toStringAsFixed(2)}',
                 style: GoogleFonts.jost(
-                  fontSize: 15.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
                   color: const Color(0xFF195ABE),
                 ),
               ),
               InkWell(
                 onTap: () {},
-                borderRadius: BorderRadius.circular(8.r),
+                borderRadius: BorderRadius.circular(10.r),
                 child: Container(
                   width: 32.w,
                   height: 32.h,
                   decoration: BoxDecoration(
                     color: const Color(0xFF195ABE),
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(10.r),
                   ),
                   child: const Icon(
                     Icons.add,
@@ -536,4 +574,39 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+// ---------- CUSTOM PAINTER FOR GOLD COIN PROGRESS ARC RING ----------
+class _CoinProgressArcPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final strokeWidth = 3.5.w;
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = (min(size.width, size.height) - strokeWidth) / 2;
+
+    // Background track ring
+    final bgPaint = Paint()
+      ..color = const Color(0xFFE2E8F0)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth;
+    canvas.drawCircle(center, radius, bgPaint);
+
+    // Golden yellow progress arc ring
+    final arcPaint = Paint()
+      ..color = const Color(0xFFFFC107)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -pi / 2,
+      2.1 * pi,
+      false,
+      arcPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

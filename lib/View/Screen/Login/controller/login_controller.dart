@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../Core/AppRoute/app_route.dart';
+
 class LoginController extends GetxController {
   final TextEditingController inputController = TextEditingController();
   final RxBool isEmailMode = false.obs;
@@ -11,7 +13,15 @@ class LoginController extends GetxController {
   }
 
   void submitLogin() {
-    // Handle login submission logic
+    Get.toNamed(
+      AppRoute.otpScreen,
+      arguments: {
+        'isEmail': isEmailMode.value,
+        'target': inputController.text.isNotEmpty
+            ? inputController.text
+            : (isEmailMode.value ? 'helloworld@gmail.com' : '+52 9999 10 20 30'),
+      },
+    );
   }
 
   @override

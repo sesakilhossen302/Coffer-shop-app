@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import '../../View/Screen/GiftCard/view/gift_card_details_screen.dart';
+import '../../View/Screen/GiftCard/view/purchase_gift_card_screen.dart';
 import '../../View/Screen/Home/view/home_screen.dart';
 import '../../View/Screen/ItemDetails/view/item_details_screen.dart';
 import '../../View/Screen/LoadingScreen/loading_screen.dart';
@@ -29,6 +31,8 @@ class AppRoute {
   static const String orderReceivedScreen = '/order-received';
   static const String rewardDetailsScreen = '/reward-details';
   static const String rewardRedeemedScreen = '/reward-redeemed';
+  static const String giftCardDetailsScreen = '/gift-card-details';
+  static const String purchaseGiftCardScreen = '/purchase-gift-card';
 
   static List<GetPage> routes = [
     GetPage(
@@ -86,6 +90,14 @@ class AppRoute {
     GetPage(
       name: rewardRedeemedScreen,
       page: () => const RewardRedeemedScreen(),
+    ),
+    GetPage(
+      name: giftCardDetailsScreen,
+      page: () => const GiftCardDetailsScreen(),
+    ),
+    GetPage(
+      name: purchaseGiftCardScreen,
+      page: () => const PurchaseGiftCardScreen(),
     ),
   ];
 }

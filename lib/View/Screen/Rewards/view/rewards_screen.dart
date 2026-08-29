@@ -355,7 +355,7 @@ class RewardsScreen extends StatelessWidget {
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () => Get.toNamed(AppRoute.giftCardDetailsScreen),
                             borderRadius: BorderRadius.circular(14.r),
                             child: Container(
                               height: 46.h,
@@ -627,7 +627,7 @@ class RewardsScreen extends StatelessWidget {
     final bool isGiftCard1 = card.id == 'g1';
 
     return GestureDetector(
-      onTap: () => controller.purchaseGiftCard(card),
+      onTap: () => Get.toNamed(AppRoute.giftCardDetailsScreen, arguments: card),
       child: Container(
         width: double.infinity,
         height: 155.h,

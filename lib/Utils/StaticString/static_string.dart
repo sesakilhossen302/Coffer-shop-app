@@ -37,6 +37,14 @@ class StaticString {
   static const String incorrectCodeTryAgain = 'Incorrect code, try again';
   static const String resendCode = 'Resend code';
 
+  // Notification Strings
+  static const String notification = 'Notification';
+  static const String markAllAsRead = 'Mark all as read';
+  static const String noNotificationsYet = 'No notifications yet';
+  static const String caughtUpCheckBack = "You're all caught up. Check back later for new updates.";
+  static const String todaysSpecial = "Today's Special";
+  static const String caramelLatteOffer = 'Enjoy 20% off our Caramel Latte — available...';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

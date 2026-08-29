@@ -81,6 +81,13 @@ class StaticString {
   static const String candy = 'Candy';
   static const String orderNow = 'Order Now';
 
+  // Popup Dialog Strings
+  static const String addedToCart = 'Added to cart';
+  static const String productAddedToCartMsg = 'This product has added to the cart';
+  static const String addedAsFav = 'Added as Fav';
+  static const String productAddedToFavMsg = 'This product has added to my favorite section';
+  static const String okText = 'Ok';
+
   // Make Payment & Order Received Strings
   static const String orderReceived = 'Order Received';
   static const String paymentMethodTitle = 'Payment method';

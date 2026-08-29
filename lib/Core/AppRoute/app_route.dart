@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../View/Screen/Home/view/home_screen.dart';
 import '../../View/Screen/LoadingScreen/loading_screen.dart';
 import '../../View/Screen/Login/view/login_screen.dart';
 import '../../View/Screen/OtpVerification/view/otp_screen.dart';
@@ -37,6 +38,11 @@ class AppRoute {
     GetPage(
       name: otpScreen,
       page: () => const OtpScreen(),
+      transition: Transition.rightToLeftWithFade,
+    ),
+    GetPage(
+      name: homeScreen,
+      page: () => const HomeScreen(),
       transition: Transition.rightToLeftWithFade,
     ),
   ];

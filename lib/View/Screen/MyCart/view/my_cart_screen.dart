@@ -100,7 +100,7 @@ class MyCartScreen extends StatelessWidget {
         children: [
           SizedBox(height: 16.h),
 
-          // Cart Items List using Column (Fail-safe layout without ListView conflicts)
+          // Cart Items List using Column (Fail-safe layout)
           Column(
             children: List.generate(
               controller.cartItems.length,
@@ -149,24 +149,29 @@ class MyCartScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 12.w),
-              SizedBox(
-                height: 48.h,
-                child: ElevatedButton(
-                  onPressed: controller.applyDiscount,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF195ABE),
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
+              
+              // Apply Action Button (Custom Fail-Safe Container)
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: controller.applyDiscount,
+                  borderRadius: BorderRadius.circular(14.r),
+                  child: Container(
+                    height: 48.h,
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF195ABE),
                       borderRadius: BorderRadius.circular(14.r),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  ),
-                  child: Text(
-                    StaticString.apply,
-                    style: GoogleFonts.jost(
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.bold,
+                    child: Center(
+                      child: Text(
+                        StaticString.apply,
+                        style: GoogleFonts.jost(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -291,25 +296,28 @@ class MyCartScreen extends StatelessWidget {
 
           SizedBox(height: 32.h),
 
-          // "Place order" Action Button
-          SizedBox(
-            width: double.infinity,
-            height: 54.h,
-            child: ElevatedButton(
-              onPressed: controller.placeOrder,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF195ABE),
-                foregroundColor: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
+          // "Place order" Action Button (Custom Fail-Safe Container)
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: controller.placeOrder,
+              borderRadius: BorderRadius.circular(16.r),
+              child: Container(
+                width: double.infinity,
+                height: 54.h,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF195ABE),
                   borderRadius: BorderRadius.circular(16.r),
                 ),
-              ),
-              child: Text(
-                StaticString.placeOrder,
-                style: GoogleFonts.jost(
-                  fontSize: 17.sp,
-                  fontWeight: FontWeight.bold,
+                child: Center(
+                  child: Text(
+                    StaticString.placeOrder,
+                    style: GoogleFonts.jost(
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),

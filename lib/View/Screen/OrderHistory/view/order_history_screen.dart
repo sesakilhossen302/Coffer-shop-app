@@ -74,10 +74,11 @@ class OrderHistoryScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Container(
-              height: 46.h,
+              height: 48.h,
+              padding: EdgeInsets.all(4.r),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12.r),
+                borderRadius: BorderRadius.circular(14.r),
                 border: Border.all(
                   color: const Color(0xFFE5E9F0),
                   width: 1.2,
@@ -90,13 +91,12 @@ class OrderHistoryScreen extends StatelessWidget {
                       controller: controller,
                       index: 0,
                       title: StaticString.upcomingTab,
-                      isLeft: true,
                     ),
+                    SizedBox(width: 4.w),
                     _buildTabButton(
                       controller: controller,
                       index: 1,
                       title: StaticString.completedTab,
-                      isLeft: false,
                     ),
                   ],
                 ),
@@ -146,7 +146,6 @@ class OrderHistoryScreen extends StatelessWidget {
     required OrderHistoryController controller,
     required int index,
     required String title,
-    required bool isLeft,
   }) {
     final bool isSelected = controller.selectedTab.value == index;
 
@@ -158,9 +157,7 @@ class OrderHistoryScreen extends StatelessWidget {
           duration: const Duration(milliseconds: 180),
           decoration: BoxDecoration(
             color: isSelected ? const Color(0xFF1E90FF) : Colors.transparent,
-            borderRadius: isLeft
-                ? BorderRadius.horizontal(left: Radius.circular(10.r))
-                : BorderRadius.horizontal(right: Radius.circular(10.r)),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           child: Center(
             child: Text(

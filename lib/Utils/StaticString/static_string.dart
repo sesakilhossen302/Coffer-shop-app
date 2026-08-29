@@ -299,6 +299,14 @@ class StaticString {
   static const String addFavoriteItemDesc = 'Add  your favorite item to see them here.';
   static const String exploreOrder = 'Explore order';
 
+  // Order History Strings
+  static const String orderHistoryTitle = 'Order History';
+  static const String upcomingTab = 'Upcoming';
+  static const String completedTab = 'Completed';
+  static const String pendingStatus = 'Pending';
+  static const String completedStatus = 'Completed';
+  static const String viewDetailsBtn = 'View Details';
+
   static const String welcomeText = 'Find the best coffee for you';
   static const String searchCoffeeHint = 'Search coffee...';
   static const String buyNow = 'Buy Now';

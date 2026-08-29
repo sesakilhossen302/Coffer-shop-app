@@ -242,6 +242,42 @@ class GiftCardsCatalogScreen extends StatelessWidget {
   // ---------- GIFT CARD LIST ITEM WIDGET ----------
   Widget _buildGiftCardListItem(UserGiftCardModel card) {
     final bool isReceived = card.badgeType == 'Received';
+    final bool isPurchased = card.badgeType == 'Purchased';
+    final bool isSent = card.badgeType == 'Sent';
+    final bool isRedeemed = card.badgeType == 'Redeemed';
+
+    // Badge styling
+    Color badgeBg = const Color(0xFFEBF3FF);
+    Color badgeTextColor = const Color(0xFF195ABE);
+
+    if (isPurchased) {
+      badgeBg = const Color(0xFFFFF8E7);
+      badgeTextColor = const Color(0xFFD98A00);
+    } else if (isSent) {
+      badgeBg = const Color(0xFFF2F4F7);
+      badgeTextColor = const Color(0xFF777777);
+    } else if (isRedeemed) {
+      badgeBg = const Color(0xFFE8F7ED);
+      badgeTextColor = const Color(0xFF34C759);
+    }
+
+    // Top title text
+    String topTitle = card.senderName;
+    if (isSent) {
+      topTitle = 'To: ${card.email}';
+    }
+
+    // Subtitle text (Middle row)
+    String subtitleText = card.email;
+    if (isSent || isRedeemed) {
+      subtitleText = card.dateText;
+    }
+
+    // Amount text color
+    Color amountColor = const Color(0xFF222222);
+    if (isRedeemed) {
+      amountColor = const Color(0xFFE53935);
+    }
 
     return Container(
       margin: EdgeInsets.only(bottom: 14.h),
@@ -320,32 +356,33 @@ class GiftCardsCatalogScreen extends StatelessWidget {
 
           SizedBox(width: 12.w),
 
-          // Right Card Information & Redeem Action
+          // Right Card Information & Action
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Top Row: Sender Name + Badge (Received / Purchased)
+                // Top Row: Sender / Recipient Title + Status Badge
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Text(
-                        card.senderName,
+                        topTitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.jost(
-                          fontSize: 14.5.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF222222),
                         ),
                       ),
                     ),
+                    SizedBox(width: 4.w),
                     Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: 8.w, vertical: 3.h),
                       decoration: BoxDecoration(
-                        color: isReceived
-                            ? const Color(0xFFEBF3FF)
-                            : const Color(0xFFFFF8E7),
+                        color: badgeBg,
                         borderRadius: BorderRadius.circular(6.r),
                       ),
                       child: Text(
@@ -353,20 +390,18 @@ class GiftCardsCatalogScreen extends StatelessWidget {
                         style: GoogleFonts.jost(
                           fontSize: 10.sp,
                           fontWeight: FontWeight.bold,
-                          color: isReceived
-                              ? const Color(0xFF195ABE)
-                              : const Color(0xFFD98A00),
+                          color: badgeTextColor,
                         ),
                       ),
                     ),
                   ],
                 ),
 
-                SizedBox(height: 2.h),
+                SizedBox(height: 3.h),
 
-                // Middle Row: Email Address
+                // Middle Row: Subtitle (Email / Date)
                 Text(
-                  card.email,
+                  subtitleText,
                   style: GoogleFonts.jost(
                     fontSize: 11.5.sp,
                     color: const Color(0xFF888888),
@@ -375,51 +410,52 @@ class GiftCardsCatalogScreen extends StatelessWidget {
 
                 SizedBox(height: 8.h),
 
-                // Bottom Row: Amount & Redeem Now Button
+                // Bottom Row: Amount & Optional "Redeem Now" Button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       card.amountText,
                       style: GoogleFonts.jost(
-                        fontSize: 13.sp,
+                        fontSize: 13.5.sp,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF222222),
+                        color: amountColor,
                       ),
                     ),
 
-                    // "Redeem Now" Button
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          Get.snackbar(
-                            'Redeem Gift Card',
-                            'Redeeming ${card.amountText} gift card...',
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: const Color(0xFF195ABE),
-                            colorText: Colors.white,
-                          );
-                        },
-                        borderRadius: BorderRadius.circular(8.r),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.w, vertical: 5.h),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF195ABE),
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          child: Text(
-                            StaticString.redeemNow,
-                            style: GoogleFonts.jost(
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                    // Show "Redeem Now" button ONLY for Available tab items
+                    if (isReceived || isPurchased)
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            Get.snackbar(
+                              'Redeem Gift Card',
+                              'Redeeming ${card.amountText} gift card...',
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: const Color(0xFF195ABE),
+                              colorText: Colors.white,
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(8.r),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.w, vertical: 5.h),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF195ABE),
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            child: Text(
+                              StaticString.redeemNow,
+                              style: GoogleFonts.jost(
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ],

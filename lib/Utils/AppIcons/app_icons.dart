@@ -9,6 +9,15 @@ class AppIcons {
   static const String facebookIcon = '$basePath/Facbook-Icons.svg';
   static const String googleIcon = '$basePath/Google-icons.svg';
 
+  // Home Header & NavBar SVG Icons
+  static const String shopIcon = '$basePath/Shop-Icons.svg';
+  static const String notificationIcon = '$basePath/Notification-Icons.svg';
+  static const String homeNavIcon = '$basePath/Home-navbar-Icons.svg';
+  static const String orderNavIcon = '$basePath/Orders-NavBar-Icons.svg';
+  static const String rewardsNavIcon = '$basePath/Rewards-Navbar-Icons.svg';
+  static const String branchesNavIcon = '$basePath/Branches-Map-NavBar-Icons.svg';
+  static const String profileNavIcon = '$basePath/Profile-NavBar-Icons.svg';
+
   // Additional App Icons
   static const String coffee = '$basePath/coffee.png';
   static const String home = '$basePath/home.png';
